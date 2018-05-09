@@ -1,0 +1,6 @@
+---
+- name: Restart Fluentd
+  docker_container:
+    name: fluentd
+    restart: True
+  when: fluentd_config.changed

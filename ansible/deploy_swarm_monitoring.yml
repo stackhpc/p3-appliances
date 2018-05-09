@@ -1,0 +1,10 @@
+#
+# Copyright StackHPC, 2018
+#
+---
+- name: Deploy Swarm cluster monitoring
+  hosts: cluster
+  become: yes
+  roles:
+  - role: monasca_fluentd
+
