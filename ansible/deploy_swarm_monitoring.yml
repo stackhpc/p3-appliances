@@ -6,6 +6,7 @@
   hosts: cluster
   become: yes
   roles:
+  - role: monasca_agent_docker
   - role: monasca_fluentd
   - role: prometheus-docker-node
 

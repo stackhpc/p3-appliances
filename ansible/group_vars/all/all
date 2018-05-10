@@ -36,6 +36,16 @@ monasca_fluentd_password: "{{ monasca_agent_p3_password }}"
 monasca_fluentd_project_domain_id: default
 monasca_fluentd_project_name: p3
 
+# Monasca Agent (Docker) config
+monasca_agent_docker_forwarder_port: 17120
+monasca_agent_docker_log_level: INFO
+monasca_agent_docker_api_uri: http://{{ controller_vip }}:8082/v2.0
+monasca_agent_docker_keystone_uri: http://{{ controller_vip }}:5000/v3
+monasca_agent_docker_username: "{{ monasca_agent_p3_username }}"
+monasca_agent_docker_password: "{{ monasca_agent_p3_password }}"
+monasca_agent_docker_project_name: p3
+
+
 # Local Grafana admin account for configuring Grafana
 grafana_admin_username: grafana-admin
 grafana_admin_password: "{{ vault_grafana_admin_password }}"
