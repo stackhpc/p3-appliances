@@ -1,0 +1,51 @@
+# {{ ansible_managed }}
+
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+  external_labels:
+      monitor: 'sahara-test'
+
+rule_files:
+  # TODO  - "alerts.rules"
+
+scrape_configs:
+  - job_name: 'prometheus'
+
+    static_configs:
+      - targets:
+{% for node in groups['master'] %}
+        - '{{ node }}:9090'
+{% endfor %}
+
+  - job_name: 'node'
+    scrape_interval: 15s
+    static_configs:
+      - targets:
+{% for node in groups['master'] %}
+        - '{{ node }}:9100'
+{% endfor %}
+{% for node in groups['slave'] %}
+        - '{{ node }}:9100'
+{% endfor %}
+
+    params:
+      collect[]:
+        - cpu
+        - meminfo
+        - diskstats
+        - netdev
+        - netstat
+        - infiniband
+
+  - job_name: 'cAdvisor'
+    scrape_interval: 15s
+    static_configs:
+      - targets:
+{% for node in groups['master'] %}
+        - '{{ node }}:8080'
+{% endfor %}
+{% for node in groups['slave'] %}
+        - '{{ node }}:8080'
+{% endfor %}
