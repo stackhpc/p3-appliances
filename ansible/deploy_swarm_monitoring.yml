@@ -1,0 +1,18 @@
+#
+# Copyright StackHPC, 2018
+#
+---
+- name: Deploy Swarm cluster monitoring
+  hosts: cluster
+  become: yes
+  roles:
+  - role: monasca_agent_docker
+  - role: monasca_fluentd
+  - role: prometheus-docker-node
+
+- name: Deploy Prometheus server
+  hosts: master
+  become: yes
+  roles:
+  - role: prometheus-server
+

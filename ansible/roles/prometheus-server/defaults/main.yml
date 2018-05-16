@@ -1,0 +1,3 @@
+---
+
+prometheus_home: /home/centos/prometheus  # TODO - better default?

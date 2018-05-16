@@ -1,0 +1,23 @@
+---
+- name: Add Prometheus node-exporter
+  docker_container:
+    name: prom-node-exporter
+    image: prom/node-exporter
+    network_mode: host  # TODO should access host fs too
+    ports:
+      - 9100:9100
+
+- name: Add cAdvisor
+  docker_container:
+    name: cAdvisor
+    image: google/cadvisor:latest
+    privileged: yes
+    detach: yes
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro

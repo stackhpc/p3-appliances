@@ -1,0 +1,39 @@
+#
+# Copyright StackHPC, 2018
+#
+---
+- name: Create Fluentd user
+  user:
+    name: fluent
+    state: present
+
+- name: Create Fluentd config directory
+  file:
+    path: /etc/fluentd
+    state: directory
+    owner: fluent
+    group: fluent
+    mode: 0755
+
+- name: Generate Fluentd config
+  template:
+    src: fluentd.conf.j2
+    dest: /etc/fluentd/fluentd.conf
+    owner: fluent
+    group: fluent
+    mode: 0644
+  register: fluentd_config
+  notify: Restart Fluentd
+
+- name: Start Fluentd container
+  docker_container:
+    name: fluentd
+    image: stackhpc/monasca-fluentd:latest
+    state: started
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    volumes:
+      - /etc/fluentd/:/fluentd/etc:ro
+    env:
+      FLUENTD_CONF: "fluentd.conf"

@@ -1,0 +1,116 @@
+#
+# Copyright StackHPC, 2018
+#
+---
+- name: Start monasca-agent-forwarder container
+  docker_container:
+    name: monasca-agent-forwarder
+    pull: true
+    image: stackhpc/agent-forwarder:latest
+    state: started
+    volumes:
+      - plugins:/etc/monasca/agent/conf.d:ro
+    ports:
+      - "{{ monasca_agent_docker_forwarder_port }}:{{ monasca_agent_docker_forwarder_port }}"
+    env:
+      LOG_LEVEL: "{{ monasca_agent_docker_log_level }}"
+      OS_AUTH_URL: "{{ monasca_agent_docker_keystone_uri }}"
+      OS_USERNAME: "{{ monasca_agent_docker_username }}"
+      OS_PASSWORD: "{{ monasca_agent_docker_password }}"
+      OS_USER_DOMAIN_NAME: Default
+      OS_PROJECT_NAME: "{{ monasca_agent_docker_project_name }}"
+      OS_PROJECT_DOMAIN_NAME: Default
+      MONASCA_URL: "{{ monasca_agent_docker_api_uri }}"
+      SERVICE_TYPE: monitoring
+      ENDPOINT_TYPE: public
+      REGION_NAME: RegionOne
+      AGENT_HOSTNAME: "{{ ansible_hostname }}"
+      FORWARDER_URL: "http://monasca_agent-forwarder:{{ monasca_agent_docker_forwarder_port }}"
+      FORWARDER_PORT: "{{ monasca_agent_docker_forwarder_port }}"
+
+- name: Create Monasca collector plugin directory
+  file:
+    path: /etc/monasca/agent/conf.d/
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Template Monasca collector plugins
+  template:
+    src: "{{ item }}.j2"
+    dest: "/etc/monasca/agent/conf.d/{{ item }}"
+    owner: root
+    mode: 0644
+  with_items:
+    - cpu.yaml
+    - docker.yaml
+    - disk.yaml
+    - ib_network.yaml
+    - load.yaml
+    - memory.yaml
+    - network.yaml
+
+- name: Wait for forwarder service
+  wait_for:
+    port: "{{ monasca_agent_docker_forwarder_port }}"
+    delay: 1
+
+- name: Start monasca-agent-collector container
+  docker_container:
+    name: monasca-agent-collector
+    pull: true
+    links:
+      - monasca-agent-forwarder
+    image: stackhpc/agent-collector:latest
+    state: started
+    env:
+      DOCKER: True
+      LOG_LEVEL: "{{ monasca_agent_docker_log_level }}"
+      OS_AUTH_URL: "{{ monasca_agent_docker_keystone_uri }}"
+      OS_USERNAME: "{{ monasca_agent_docker_username }}"
+      OS_PASSWORD: "{{ monasca_agent_docker_password }}"
+      OS_USER_DOMAIN_NAME: Default
+      OS_PROJECT_NAME: "{{ monasca_agent_docker_project_name }}"
+      OS_PROJECT_DOMAIN_NAME: Default
+      MONASCA_URL: "{{ monasca_agent_docker_api_uri }}"
+      SERVICE_TYPE: monitoring
+      ENDPOINT_TYPE: public
+      REGION_NAME: RegionOne
+      AGENT_HOSTNAME: "{{ ansible_hostname }}"
+      FORWARDER_URL: "http://monasca-agent-forwarder:{{ monasca_agent_docker_forwarder_port }}"
+      FORWARDER_PORT: "{{ monasca_agent_docker_forwarder_port }}"
+    volumes:
+      - "/:/rootfs"
+      - "/var/run:/var/run:rw"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+      - "/dev/disk/:/dev/disk:ro"
+      - "/etc/monasca/agent/conf.d:/etc/monasca/agent/conf.d:ro"
+
+- name: Start monasca-agent-statsd container
+  docker_container:
+    name: monasca-agent-statsd
+    pull: true
+    links:
+      - monasca-agent-forwarder
+    image: stackhpc/agent-statsd:latest
+    state: started
+    ports:
+      - "8125:8125/udp"
+    env:
+      DOCKER: True
+      LOG_LEVEL: "{{ monasca_agent_docker_log_level }}"
+      OS_AUTH_URL: "{{ monasca_agent_docker_keystone_uri }}"
+      OS_USERNAME: "{{ monasca_agent_docker_username }}"
+      OS_PASSWORD: "{{ monasca_agent_docker_password }}"
+      OS_USER_DOMAIN_NAME: Default
+      OS_PROJECT_NAME: "{{ monasca_agent_docker_project_name }}"
+      OS_PROJECT_DOMAIN_NAME: Default
+      MONASCA_URL: "{{ monasca_agent_docker_api_uri }}"
+      SERVICE_TYPE: monitoring
+      ENDPOINT_TYPE: public
+      REGION_NAME: RegionOne
+      AGENT_HOSTNAME: "{{ ansible_hostname }}"
+      FORWARDER_URL: "http://monasca-agent-forwarder:{{ monasca_agent_docker_forwarder_port }}"
+      FORWARDER_PORT: "{{ monasca_agent_docker_forwarder_port }}"
