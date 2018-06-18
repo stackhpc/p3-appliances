@@ -67,3 +67,12 @@ using another playbook (for example):
 
 `ansible-playbook -e @config/openhpc.yml -i ansible/inventory_openhpc ansible/openhpc.yml`
 
+### Gluster Storage
+
+Creating gluster storage clusters using storage-A and storage-B flavours:
+
+`ansible-playbook -e @config/gluster-storage.yml -i ansible/inventory ansible/cluster-infra.yml --vault-password-file vault-password`
+
+Configuring gluster storage:
+
+`ansible-playbook -i ansible/inventory_gluster-storage ansible/configure_gluster_storage.yml --vault-password-file vault-password` 
