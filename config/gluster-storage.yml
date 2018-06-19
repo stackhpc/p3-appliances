@@ -36,7 +36,7 @@ storage_B:
   name: "B"
   flavor: "storage-B"
   image: "CentOS7.4-OpenHPC"
-  num_nodes: 2
+  num_nodes: 0
   user: "centos"
 
 cluster_roles: []
