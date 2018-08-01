@@ -5,6 +5,7 @@ openstacksdk
 python-barbicanclient
 python-keystoneclient
 python-magnumclient
-python-heatclient
 python-novaclient
-
+python-openstackclient
+python-ironicclient
+python-heatclient
