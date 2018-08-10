@@ -94,10 +94,10 @@ Then, run the monitoring deployment playbook:
 
 ### Gluster Storage
 
-Creating gluster storage clusters using storage-A and storage-B flavours:
+Creating gluster storage clusters using storage-A (nvme) and storage-B (ssdarr) flavours:
 
-`ansible-playbook -e @config/gluster-storage.yml -i ansible/inventory ansible/cluster-infra.yml --vault-password-file vault-password`
+`ansible-playbook -e @config/openhpc-[nvme|ssdarr].yml -i ansible/inventory ansible/cluster-infra.yml --vault-password-file vault-password`
 
 Configuring gluster storage:
 
-`ansible-playbook -i ansible/inventory_gluster-storage ansible/configure_gluster_storage.yml --vault-password-file vault-password` 
+`ansible-playbook -i ansible/inventory-openhpc-[nvme|ssdarr] ansible/openhpc.yml --vault-password-file vault-password` 
