@@ -1,4 +1,0 @@
-- name: Deploy a Gluster cluster with monitoring
-  hosts: cluster
-  roles:
-  - role: stackhpc.gluster-cluster
