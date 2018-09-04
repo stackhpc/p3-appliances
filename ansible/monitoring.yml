@@ -7,7 +7,7 @@
   become: yes
 
   roles:
-  - role: stackhpc.monasca-agent
+  - role: stackhpc.monasca_agent
     keystone_url: "http://{{ controller_vip }}:5000/v3"
     monasca_user: root
     monasca_agent_user: "{{ monasca_agent_p3_username }}"
@@ -23,7 +23,7 @@
     monasca_agent_custom_plugin_repos:
     - "https://github.com/stackhpc/stackhpc-monasca-agent-plugins.git@master"
 
-  - role: stackhpc.monasca-rsyslog
+  - role: stackhpc.monasca_rsyslog
     monasca_rsyslog_api_auth:
         auth_url: "http://{{ controller_vip }}:5000/v3"
         project: "{{ project_name }}"
@@ -37,7 +37,7 @@
   hosts: cluster_login
   run_once: true
   roles:
-  - role: stackhpc.grafana-conf
+  - role: stackhpc.grafana_conf
     grafana_conf_organisation: "{{ project_name }}"
     grafana_conf_grafana_admin_user: "{{ grafana_admin_username }}"
     grafana_conf_grafana_admin_pass: "{{ grafana_admin_password }}"

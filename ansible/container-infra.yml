@@ -5,5 +5,5 @@
 - hosts: openstack
   gather_facts: no
   roles:
-  - role: stackhpc.os-container-infra
+  - role: stackhpc.os_container_infra
 ...
