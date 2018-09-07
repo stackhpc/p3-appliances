@@ -1,12 +1,12 @@
 ---
-- src: stackhpc.cluster-infra
-- src: stackhpc.monasca-agent
-- src: stackhpc.monasca-rsyslog
-- src: stackhpc.grafana-conf
-- src: stackhpc.gluster-cluster
-- src: stackhpc.os-container-infra
-- src: stackhpc.os-manila-mount
-- src: stackhpc.os-config
+- src: stackhpc.cluster_infra
+- src: stackhpc.monasca_agent
+- src: stackhpc.monasca_rsyslog
+- src: stackhpc.grafana_conf
+- src: stackhpc.gluster_cluster
+- src: stackhpc.os_container_infra
+- src: stackhpc.os_manila_mount
+- src: stackhpc.os_config
 - src: stackhpc.beegfs
 - src: singleplatform-eng.users
 - src: mrlesmithjr.mdadm

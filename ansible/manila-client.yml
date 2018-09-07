@@ -5,7 +5,7 @@
 # Query OpenStack Manila for details aob
 - hosts: localhost
   roles:
-    - role: stackhpc.os-manila-mount
+    - role: stackhpc.os_manila_mount
       vars:
         os_manila_mount_action: "lookup"
         os_manila_mount_share_name: "HomeDirs"
@@ -14,7 +14,7 @@
 - hosts: cluster_ceph_client
   roles:
     # Perform the mount action on all Ceph client nodes
-    - role: stackhpc.os-manila-mount
+    - role: stackhpc.os_manila_mount
       os_manila_mount_action: "mount"
       os_manila_mount_host: "{{ hostvars['localhost']['os_manila_mount_host'] }}"
       os_manila_mount_access_key: "{{ hostvars['localhost']['os_manila_mount_access_key'] }}"

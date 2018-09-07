@@ -5,7 +5,7 @@
 - hosts: openstack
 
   roles:
-    - role: stackhpc.cluster-infra
+    - role: stackhpc.cluster_infra
       cluster_name: "{{ cluster_name }}"
       cluster_params:
         cluster_prefix: "{{ cluster_name }}"
