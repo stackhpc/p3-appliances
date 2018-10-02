@@ -1,0 +1,87 @@
+---
+# This name is used for the Heat stack and as a prefix for the
+# cluster node hostnames.
+cluster_name: storage-ssd
+
+# This parameter should be set to the name of an RSA keypair you have
+# uplaoded to OpenStack.
+cluster_keypair: bharat
+
+# Site-specific network configuration.
+cluster_net:
+  - { net: "ilab", subnet: "ilab" }
+  - { net: "p3-bdn", subnet: "p3-bdn" }
+  - { net: "p3-lln", subnet: "p3-lln" }
+
+# A 3-NIC node resource in the heat templates.
+cluster_nodenet_environment: "nodenet-3.yaml"
+
+# Enable the use of config drive, for managing IP assignment on IPoIB
+cluster_config_drive: true
+
+# Multi-node application topology.  In this case we have a SLURM
+# deployment formed from a login/controller node and a number of
+# batch compute nodes.
+cluster_groups:
+  - "{{ storage }}"
+
+storage:
+  name: "node"
+  flavor: "storage-B"
+  image: "CentOS7.5-OpenHPC"
+  num_nodes: 2
+  user: "centos"
+
+# Node group assignments for cluster roles.
+# These group assignments are appended to the cluster inventory file.
+# The names of these roles are cross-referenced to groups referred to
+# in playbooks in the ansible/ directory.
+cluster_roles:
+  - name: "glusterfs_server"
+    groups: [ "{{ storage }}" ]
+  - name: "glusterfs_client"
+    groups: [ "{{ storage }}" ]
+  - name: "beegfs_mgmt"
+    groups: [ "{{ storage }}" ]
+  - name: "beegfs_oss"
+    groups: [ "{{ storage }}" ]
+  - name: "beegfs_mds"
+    groups: [ "{{ storage }}" ]
+  - name: "beegfs_client"
+    groups: ["{{ storage }}" ]
+
+# Choose between glusterfs and beegfs
+cluster_fs: beegfs
+
+# Gluster config
+gluster_cluster_volume_name: "{{ cluster_name }}"
+gluster_cluster_block_devices:
+- sdb
+gluster_cluster_transport_interface: ib0
+gluster_cluster_transport_mode: rdma
+gluster_cluster_force_format: no
+gluster_cluster_volume_options:
+  performance.cache-size: '10GB'
+  diagnostics.brick-log-level: 'WARNING'
+
+gluster_src: "localhost:/{{ gluster_cluster_volume_name }}"
+gluster_mnt: "/mnt/{{ gluster_cluster_volume_name }}"
+
+# BeegFS server config
+beegfs_block_devices:
+- sdb
+beegfs_port_oss: [8003]
+beegfs_fstype: "xfs"
+beegfs_force_format: no
+beegfs_host_mgmt: "{{ groups['cluster_beegfs_mgmt'] | first }}"
+beegfs_interfaces: ["ib0"]
+beegfs_path_meta: "/data/beegfs/beegfs_meta"
+beegfs_state: present
+beegfs_rdma: yes
+
+# BeegFS client config
+beegfs_client_confs:
+- beegfs_path_client: "/mnt/{{ cluster_name }}"
+  beegfs_host_mgmt: "{{ beegfs_host_mgmt }}"
+  beegfs_port_client: 28004
+...
