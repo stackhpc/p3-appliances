@@ -2,6 +2,10 @@
 # Copyright StackHPC, 2018
 #
 ---
+# Add cluster nodes to SSH known hosts
+- import_playbook: ssh-known-hosts.yml
+  when: ssh_known_hosts_enable | default(false)
+
 - hosts: localhost
   gather_facts: yes
   roles:
