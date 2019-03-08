@@ -6,19 +6,23 @@
     state: restarted
   become: True
 
+- name: Unload kernel modules
+  modprobe:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ ib_modules }}"
+  become: yes
+  notify: Reset interface
+
+- name: Load kernel modules
+  modprobe:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ ib_modules }}"
+  become: yes
+  notify: Reset interface
+
 - name: Reset interface
   shell: ifdown ib0; ifup ib0
-  become: yes
-
-- name: Remove mlx5_ib module
-  modprobe:
-    name: mlx5_ib
-    state: absent
-  become: yes
-
-- name: Probe mlx5_ib module
-  modprobe:
-    name: mlx5_ib
-    state: present 
   become: yes
 ...
