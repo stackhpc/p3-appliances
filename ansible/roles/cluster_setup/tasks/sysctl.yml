@@ -9,5 +9,10 @@
     reload: yes
     sysctl_set: yes
   with_items:
-    - { name: kernel.panic, value: 5 }
+    - name: kernel.panic
+      value: 5
+    - name: vm.dirty_background_ratio
+      value: 5
+    - name: vm.dirty_ratio
+      value: 10
 ...
