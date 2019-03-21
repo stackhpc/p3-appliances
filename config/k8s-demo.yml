@@ -5,24 +5,45 @@ bdn_name: p3-bdn
 lln_name: p3-lln
 
 # SIP configuration
-os_container_infra_user: fedora
-os_container_infra_state: present
-os_container_infra_cluster_name: k8s-sip
-os_container_infra_cluster_template_name: k8s-fedora-atomic-27
-os_container_infra_keypair: wendy
-os_container_infra_master_count: 1
-os_container_infra_node_count: 2
-os_container_infra_external_interface: "{{ ext_name }}"
-os_container_infra_interfaces:
+cluster_user: "fedora"
+cluster_state: "present"
+cluster_name: "k8s-demo"
+cluster_template_name: "k8s-fedora-atomic-27"
+cluster_keypair: "wendy"
+cluster_coe: "kubernetes"
+cluster_default_interface: "{{ ext_name }}"
+cluster_interfaces:
+- "{{ ext_name }}"
 - "{{ lln_name }}"
 - "{{ bdn_name }}"
 
-# Kubernetes version
-os_container_infra_k8s_version: v1.11.5-1
+cluster_master_group:
+  name: "master"
+  count: 1
 
-# SIP config for Ceph mount
-ceph_mount_share_name: HomeDirs
-ceph_mount_path: /mnt/ceph
+cluster_worker_group:
+  name: "minion"
+  count: 1
+
+cluster_groups:
+- "{{ cluster_master_group }}"
+- "{{ cluster_worker_group }}"
+
+cluster_roles:
+- name: "{{ cluster_coe }}"
+  groups: "{{ cluster_groups }}"
+- name: "ceph_client"
+  groups: "{{ cluster_groups }}"
+
+# Kubernetes version
+cluster_k8s_version: "v1.13.4"
+
+# Manila mount config
+ceph_mount_share_name: "HomeDirs"
+ceph_mount_fuse: false
+
+# Override alaska_homedir as Fedora Atomic doesn't allow folders to be created under root scope
+alaska_homedir: "/mnt/alaska"
 
 # SIP users 
 users:

@@ -46,6 +46,14 @@
     - Unload kernel modules
     - Load kernel modules
 
+- name: Load kernel modules
+  modprobe:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ ib_modules }}"
+  become: yes
+  notify: Reset interface
+
 - name: Copy ifcfg-ib0 network script over
   template:
     src: ifcfg-ib0.j2
