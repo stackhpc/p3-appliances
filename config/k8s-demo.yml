@@ -45,6 +45,11 @@ ceph_mount_fuse: false
 # Override alaska_homedir as Fedora Atomic doesn't allow folders to be created under root scope
 alaska_homedir: "/mnt/alaska"
 
+# Disable these before running setup.yml
+kdump_enable: false
+# This is enabled by default on Atomic Host
+setup_time_enable: false
+
 # SIP users 
 users:
 - username: stig
