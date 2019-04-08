@@ -6,7 +6,6 @@ lln_name: p3-lln
 
 # SIP configuration
 cluster_user: "fedora"
-cluster_state: "present"
 cluster_name: "k8s-demo"
 cluster_template_name: "k8s-fedora-atomic-27"
 cluster_keypair: "wendy"
@@ -36,7 +35,8 @@ cluster_roles:
   groups: "{{ cluster_groups }}"
 
 # Kubernetes version
-cluster_k8s_version: "v1.13.4"
+cluster_k8s_version: "v1.14.0"
+cluster_k8s_master_kubelet: true
 
 # Manila mount config
 ceph_mount_share_name: "HomeDirs"

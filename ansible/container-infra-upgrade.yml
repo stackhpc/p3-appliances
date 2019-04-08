@@ -5,6 +5,10 @@
   roles:
   - role: stackhpc.os-container-infra
     os_container_infra_state: "upgrade"
+    os_container_infra_coe: "{{ cluster_coe }}"
     os_container_infra_k8s_version: "{{ cluster_k8s_version }}"
-    os_container_infra_coe: "kubernetes"
+    os_container_infra_k8s_master_kubelet: "{{ cluster_k8s_master_kubelet | default(omit) }}"
+    when:
+      - cluster_coe == 'kubernetes'
+      - cluster_k8s_version is defined
 ...
