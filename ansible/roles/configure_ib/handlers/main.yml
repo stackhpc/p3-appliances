@@ -2,27 +2,28 @@
 - name: Restart NetworkManager service
   systemd:
     name: NetworkManager
-    enabled: True
+    enabled: true
     state: restarted
-  become: True
+  become: true
 
 - name: Unload kernel modules
   modprobe:
     name: "{{ item }}"
     state: absent
   with_items: "{{ ib_modules }}"
-  become: yes
+  become: true 
   notify: Reset interface
+  ignore_errors: true
 
 - name: Load kernel modules
   modprobe:
     name: "{{ item }}"
     state: present
   with_items: "{{ ib_modules }}"
-  become: yes
+  become: true
   notify: Reset interface
 
 - name: Reset interface
   shell: ifdown ib0; ifup ib0
-  become: yes
+  become: true
 ...

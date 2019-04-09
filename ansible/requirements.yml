@@ -1,14 +1,17 @@
 ---
 - src: stackhpc.cluster-infra
   version: v18.11.9
+- src: stackhpc.os-container-infra
+  version: v19.1.1
+- src: stackhpc.os-manila-mount
+  version: v19.1.1
+- src: stackhpc.beegfs
+  version: v19.4.1
 - src: stackhpc.monasca-agent
 - src: stackhpc.monasca-rsyslog
 - src: stackhpc.grafana-conf
 - src: stackhpc.gluster-cluster
-- src: stackhpc.os-container-infra
-- src: stackhpc.os-manila-mount
 - src: stackhpc.os-config
-- src: stackhpc.beegfs
 - src: singleplatform-eng.users
 - src: mrlesmithjr.mdadm
 - src: oasis-roles.kdump

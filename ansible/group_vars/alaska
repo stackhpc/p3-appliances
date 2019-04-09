@@ -13,9 +13,6 @@ alaska_monitoring_server: 10.60.253.3
 # Use a different Manila share user for production.
 os_manila_mount_share_user: home
 
-# Manila mount /etc/openstack/cloud.yaml config name
-os_manila_mount_os_config_name: alaska
-
 # Name of the cloud in clouds.yaml on localhost to use in the
 # stackhpc.os-container-infra role.
-os_container_infra_cloud: alaska
+openstack_cloud: "{{ alaska_environment }}"
