@@ -1,5 +1,8 @@
 ---
 # Prepare cluster
+- import_playbook: latest-packages.yml
+
+# Prepare cluster
 - import_playbook: setup.yml
 
 # Setup ceph mount
@@ -24,8 +27,9 @@
 # Setup hyperconverged storage. Current clusterfs options are:
 # - glusterfs
 # - beegfs
-# - none
+# - <undefined>
 - import_playbook: '{{ cluster_fs }}.yml'
+  when: cluster_fs is defined
 
 # Cluster login setup
 - import_playbook: slurm.yml
