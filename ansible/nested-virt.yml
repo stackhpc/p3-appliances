@@ -7,6 +7,7 @@
         state: absent
   tasks:
     - name: Ensure nested virtualisation options are present
+      # Source: https://www.linuxtechi.com/enable-nested-virtualization-kvm-centos-7-rhel-7/
       lineinfile:
         path: /etc/modprobe.d/kvm-nested.conf
         line: "{{ item }}"
