@@ -1,0 +1,29 @@
+- hosts: cluster
+  become: yes
+  handlers:
+    - name: Remove kvm_intel module
+      modprobe:
+        name: kvm_intel
+        state: absent
+  tasks:
+    - name: Ensure nested virtualisation options are present
+      lineinfile:
+        path: /etc/modprobe.d/kvm-nested.conf
+        line: "{{ item }}"
+        create: yes
+      with_items:
+        - options kvm-intel nested=1
+        - options kvm-intel enable_shadow_vmcs=1
+        - options kvm-intel enable_apicv=1
+        - options kvm-intel ept=1
+      notify: Remove kvm_intel module
+    - meta: flush_handlers
+    - name: Load kvm_intel module
+      modprobe:
+        name: kvm_intel
+        state: present
+    - name: Check that the option is enabled
+      # This will fail with a permission denied if nested virtualisation is still not enabled
+      lineinfile:
+        path: /sys/module/kvm_intel/parameters/nested
+        line: Y
