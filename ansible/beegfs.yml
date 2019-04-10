@@ -8,9 +8,9 @@
     - role: stackhpc.beegfs
       beegfs_enable:
         admon: false
-        mgmt: "{{ inventory_hostname in groups['cluster_beegfs_mgmt'] }}"
-        meta: "{{ inventory_hostname in groups['cluster_beegfs_mds'] }}"
-        oss: "{{ inventory_hostname in groups['cluster_beegfs_oss'] }}"
-        tuning: "{{ inventory_hostname in groups['cluster_beegfs_oss'] }}"
-        client: "{{ inventory_hostname in groups['cluster_beegfs_client'] }}"
+        mgmt: "{{ inventory_hostname in groups['cluster_beegfs_mgmt'] | default([]) }}"
+        meta: "{{ inventory_hostname in groups['cluster_beegfs_mds'] | default([]) }}"
+        oss: "{{ inventory_hostname in groups['cluster_beegfs_oss'] | default([]) }}"
+        tuning: "{{ inventory_hostname in groups['cluster_beegfs_oss'] | default([]) }}"
+        client: "{{ inventory_hostname in groups['cluster_beegfs_client'] | default([]) }}"
 ...
