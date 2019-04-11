@@ -57,6 +57,8 @@ slurm_compute:
 cluster_roles:
   - name: "ceph_client"
     groups: "{{ cluster_groups }}"
+  - name: "latest_packages"
+    groups: "{{ cluster_groups }}"
   - name: "login"
     groups: [ "{{ slurm_login }}" ]
   - name: "control"
@@ -106,7 +108,7 @@ gluster_mnt: "/mnt/{{ gluster_cluster_volume_name }}"
 # Config for Ceph mount
 ceph_mount_share_name: HomeDirs
 ceph_mount_path: /alaska
-ceph_mount_fuse: true
+ceph_mount_fuse: false
 
 # BeegFS config
 beegfs_state: present

@@ -3,8 +3,7 @@
 #
 ---
 - name: Deploy Monasca Swarm monitoring service
-  hosts: localhost
-  connection: local
-  gather_facts: no
+  hosts: master
+  become: yes
   roles:
   - role: monasca_swarm_service

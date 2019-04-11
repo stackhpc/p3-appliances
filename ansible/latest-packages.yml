@@ -1,0 +1,20 @@
+---
+- hosts: cluster_latest_packages
+  become: yes
+  pre_tasks:
+
+    - name: install latest packages
+      yum:
+        name: "*"
+        state: latest
+
+    - name: check if reboot is required
+      command: needs-restarting -r
+      failed_when: false
+      register: reboot_required
+      changed_when: false
+
+  roles:
+
+    - role: reboot_and_wait
+      when: reboot_required.rc != 0
