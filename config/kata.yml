@@ -1,0 +1,92 @@
+---
+# This name is used for the Heat stack and as a prefix for the
+# cluster node hostnames.
+cluster_name: kata
+
+# This parameter should be set to the name of an RSA keypair you have
+# uplaoded to OpenStack.
+cluster_keypair: wendy
+
+# Site-specific network configuration.
+cluster_net:
+  - { net: "ilab", subnet: "ilab" }
+  - { net: "p3-bdn", subnet: "p3-bdn" }
+  - { net: "p3-lln", subnet: "p3-lln" }
+
+# A 3-NIC node resource in the heat templates.
+cluster_nodenet_environment: "nodenet-3.yaml"
+
+# Enable the use of config drive, for managing IP assignment on IPoIB
+cluster_config_drive: true
+
+# Multi-node application topology.  In this case we have a SLURM
+# deployment formed from a login/controller node and a number of
+# batch compute nodes.
+cluster_groups:
+  - "{{ kata_master }}"
+  - "{{ kata_worker }}"
+
+# Login node configuration.
+kata_master_flavor: "compute-A"
+kata_master_image: "CentOS7.5-OpenHPC"
+kata_master_num_nodes: 1
+
+kata_master:
+  name: "master"
+  flavor: "{{ kata_master_flavor }}"
+  image: "{{ kata_master_image}}"
+  num_nodes: "{{ kata_master_num_nodes }}"
+  user: "centos"
+
+# Compute node configuration.
+kata_worker_flavor: "compute-A"
+kata_worker_image: "CentOS7.5-OpenHPC"
+kata_worker_num_nodes: 2
+
+kata_worker:
+  name: "worker"
+  flavor: "{{ kata_worker_flavor }}"
+  image: "{{ kata_worker_image}}"
+  num_nodes: "{{ kata_worker_num_nodes }}"
+  user: "centos"
+
+# Node group assignments for cluster roles.
+# These group assignments are appended to the cluster inventory file.
+# The names of these roles are cross-referenced to groups referred to
+# in playbooks in the ansible/ directory.
+cluster_roles:
+  - name: "ceph_client"
+    groups: "{{ cluster_groups }}"
+  - name: "latest_packages"
+    groups: "{{ cluster_groups }}"
+  - name: "master"
+    groups: [ "{{ kata_master }}" ]
+  - name: "worker"
+    groups: [ "{{ kata_worker }}" ]
+  - name: "beegfs_client"
+    groups: "{{ cluster_groups }}"
+
+# Choose between glusterfs, beegfs and none.
+cluster_fs: beegfs
+
+# Config for Ceph mount
+ceph_mount_share_name: HomeDirs
+ceph_mount_path: /alaska
+ceph_mount_fuse: false
+
+# BeegFS config
+beegfs_state: present
+beegfs_force_format: no
+beegfs_interfaces:
+- ib0
+beegfs_client:
+- path: "/mnt/openhpc"
+  port: 8004
+  mgmt_host: "openhpc-login-0"
+- path: "/mnt/storage-ssd"
+  port: 18004
+  mgmt_host: "storage-ssd-node-0"
+- path: "/mnt/storage-nvme"
+  port: 28004
+  mgmt_host: "storage-nvme-node-0"
+...
