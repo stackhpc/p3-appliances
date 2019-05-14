@@ -23,6 +23,9 @@ monasca_swarm_service_username: "{{ monasca_agent_p3_username }}"
 monasca_swarm_service_password: "{{ monasca_agent_p3_password }}"
 monasca_swarm_service_project_name: "{{ project_name }}"
 
+# Add entries to ssh known hosts
+ssh_known_hosts_enable: false
+
 # Local Grafana admin account for configuring Grafana
 grafana_admin_username: grafana-admin
 grafana_admin_password: "{{ vault_grafana_admin_password }}"

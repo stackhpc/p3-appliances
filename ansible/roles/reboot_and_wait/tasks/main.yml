@@ -1,5 +1,5 @@
 ---
-- name: Intiate reboot
+- name: Initiate reboot
   command: "/usr/sbin/shutdown -r +1"
   become: True
 
