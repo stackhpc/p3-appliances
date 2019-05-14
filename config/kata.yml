@@ -25,6 +25,7 @@ cluster_config_drive: true
 cluster_groups:
   - "{{ kata_master }}"
   - "{{ kata_worker }}"
+  - "{{ kata_worker_gpu }}"
 
 # Login node configuration.
 kata_master_flavor: "compute-A"
@@ -50,6 +51,18 @@ kata_worker:
   num_nodes: "{{ kata_worker_num_nodes }}"
   user: "centos"
 
+# Compute node configuration.
+kata_worker_gpu_flavor: "compute-GPU"
+kata_worker_gpu_image: "CentOS7.4-CUDA"
+kata_worker_gpu_num_nodes: 2
+
+kata_worker_gpu:
+  name: "gpu"
+  flavor: "{{ kata_worker_gpu_flavor }}"
+  image: "{{ kata_worker_gpu_image}}"
+  num_nodes: "{{ kata_worker_gpu_num_nodes }}"
+  user: "centos"
+
 # Node group assignments for cluster roles.
 # These group assignments are appended to the cluster inventory file.
 # The names of these roles are cross-referenced to groups referred to
@@ -61,8 +74,9 @@ cluster_roles:
     groups: "{{ cluster_groups }}"
   - name: "master"
     groups: [ "{{ kata_master }}" ]
-  - name: "worker"
+  - name: "minion"
     groups: [ "{{ kata_worker }}" ]
+    groups: [ "{{ kata_worker_gpu }}" ]
   - name: "beegfs_client"
     groups: "{{ cluster_groups }}"
 
