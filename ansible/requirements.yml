@@ -14,5 +14,5 @@
 - src: stackhpc.os-config
 - src: singleplatform-eng.users
 - src: mrlesmithjr.mdadm
-- src: oasis-roles.kdump
+- src: oasis_roles.kdump
 ...
