@@ -1,0 +1,38 @@
+---
+- import_playbook: cluster-infra-query.yml
+
+- hosts: openstack
+  gather_facts: false
+  tasks:
+    - name: Count the number of compute nodes per slurm partition
+      set_fact:
+        desired_state: "{{ ((cluster_group.output_value | selectattr('group', 'equalto', item.name ) | first).nodes | map(attribute='name') | list )[:item.num_nodes] + desired_state | default([]) }}"
+      with_items: "{{ openhpc_slurm_partitions }}"
+    - debug: var=desired_state
+
+- hosts:
+  - cluster_control
+  become: yes
+  tasks:
+  - name: Get nodes in DRAINED state
+    command: "sinfo --noheader --Node --format='%N' --states=DRAINED"
+    register: drained_nodes
+    changed_when: false
+  - name: Get nodes in ALLOC,IDLE states
+    command: "sinfo --noheader --Node --format='%N' --states=ALLOC,IDLE"
+    register: resumed_nodes
+    changed_when: false
+
+- hosts:
+  - cluster_batch
+  become: yes
+  roles:
+    - role: stackhpc.openhpc
+      openhpc_cluster_name: "{{ cluster_name }}"
+      openhpc_slurm_control_host: "{{ groups['cluster_control'] | first }}"
+      openhpc_enable:
+        control: false
+        batch: false
+        runtime: false
+        drain: "{{ inventory_hostname not in hostvars['localhost']['desired_state'] and inventory_hostname not in hostvars[openhpc_slurm_control_host]['drained_nodes'].stdout_lines }}"
+        resume: "{{ inventory_hostname in hostvars['localhost']['desired_state'] and inventory_hostname not in hostvars[openhpc_slurm_control_host]['resumed_nodes'].stdout_lines }}"
