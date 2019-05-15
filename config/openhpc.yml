@@ -107,7 +107,6 @@ gluster_mnt: "/mnt/{{ gluster_cluster_volume_name }}"
 
 # Config for Ceph mount
 ceph_mount_share_name: HomeDirs
-ceph_mount_path: /alaska
 ceph_mount_fuse: false
 
 # BeegFS config
@@ -120,7 +119,7 @@ beegfs_oss:
 - dev: /dev/md0
   port: 8003
 beegfs_client:
-- path: "/mnt/{{ cluster_name }}"
+- path: "/mnt/{{ cluster_name }}" # "{{ alaska_homedir }}"
   port: 8004
 - path: "/mnt/storage-ssd"
   port: 18004

@@ -5,6 +5,8 @@
   become: yes
   roles:
     - role: stackhpc.openhpc
+      openhpc_cluster_name: "{{ cluster_name }}"
+      openhpc_slurm_control_host: "{{ groups['cluster_control'] | first }}"
       openhpc_enable:
         control: "{{ inventory_hostname in groups['cluster_control'] }}"
         batch: "{{ inventory_hostname in groups['cluster_batch'] }}"

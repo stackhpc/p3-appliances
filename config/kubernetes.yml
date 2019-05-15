@@ -24,7 +24,6 @@ gluster_mnt: /mnt/gluster
 
 # Swarm SIP config for Ceph mount
 ceph_mount_share_name: HomeDirs
-ceph_mount_path: /mnt/ceph
 
 # Swarm SIP users 
 users:
