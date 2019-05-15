@@ -1,5 +1,6 @@
 ---
 - hosts:
+  - cluster_login
   - cluster_control
   - cluster_batch
   become: yes
