@@ -22,23 +22,26 @@
   tasks:
   - name: Get nodes in DRAINED state
     command: "sinfo --noheader --Node --format='%N' --states=DRAINED"
-    register: drained_nodes
+    register: drained_nodes_stdout
     changed_when: false
   - name: Get nodes in ALLOC,IDLE states
     command: "sinfo --noheader --Node --format='%N' --states=ALLOC,IDLE"
-    register: resumed_nodes
+    register: resumed_nodes_stdout
     changed_when: false
 
 - hosts:
+  - cluster_control
   - cluster_batch
   become: yes
+  vars:
+    desired_state: "{{ hostvars['localhost']['desired_state'] }}"
+    drained_nodes: "{{ hostvars[openhpc_slurm_control_host]['drained_nodes_stdout'].stdout_lines }}"
+    resumed_nodes: "{{ hostvars[openhpc_slurm_control_host]['resumed_nodes_stdout'].stdout_lines }}"
+    cluster_batch: "{{ groups['cluster_batch'] }}"
   roles:
     - role: stackhpc.openhpc
       openhpc_cluster_name: "{{ cluster_name }}"
       openhpc_slurm_control_host: "{{ groups['cluster_control'] | first }}"
       openhpc_enable:
-        control: false
-        batch: false
-        runtime: false
-        drain: "{{ inventory_hostname not in hostvars['localhost']['desired_state'] and inventory_hostname not in hostvars[openhpc_slurm_control_host]['drained_nodes'].stdout_lines }}"
-        resume: "{{ inventory_hostname in hostvars['localhost']['desired_state'] and inventory_hostname not in hostvars[openhpc_slurm_control_host]['resumed_nodes'].stdout_lines }}"
+        drain: "{{ inventory_hostname in cluster_batch and inventory_hostname not in (desired_state | intersect(drained_nodes)) }}"
+        resume: "{{ inventory_hostname in (cluster_batch | intersect(desired_state)) and inventory_hostname not in resumed_nodes }}"
