@@ -1,8 +1,0 @@
----
-- hosts: openstack
-  roles:
-    - role: stackhpc.cluster-infra
-      cluster_name: "{{ cluster_name }}"
-      cluster_state: query
-      cluster_params:
-        cluster_groups: "{{ cluster_groups }}"

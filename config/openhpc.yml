@@ -41,10 +41,17 @@ slurm_login:
 # Compute node configuration.
 slurm_compute_flavor: "compute-A"
 slurm_compute_image: "CentOS7.5-OpenHPC"
-slurm_compute_num_nodes: 8
+slurm_compute_num_nodes: 7
 
 slurm_compute:
   name: "compute"
+  flavor: "{{ slurm_compute_flavor }}"
+  image: "{{ slurm_compute_image}}"
+  num_nodes: "{{ slurm_compute_num_nodes }}"
+  user: "centos"
+
+slurm_computex:
+  name: "computex"
   flavor: "{{ slurm_compute_flavor }}"
   image: "{{ slurm_compute_image}}"
   num_nodes: "{{ slurm_compute_num_nodes }}"
