@@ -7,8 +7,8 @@ lln_name: p3-lln
 # SIP configuration
 cluster_user: "fedora"
 cluster_state: "present"
-cluster_name: "k8s-demo"
-cluster_template_name: "k8s-fedora-atomic-27"
+cluster_name: "swarm-sip"
+cluster_template_name: "swarm-fedora-atomic-27"
 cluster_keypair: "wendy"
 cluster_coe: "swarm-mode"
 cluster_default_interface: "{{ ext_name }}"
@@ -22,7 +22,7 @@ cluster_master_group:
   count: 1
 
 cluster_worker_group:
-  name: "minion"
+  name: "node"
   count: 1
 
 cluster_groups:
