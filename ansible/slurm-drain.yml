@@ -19,12 +19,10 @@
 
 - hosts: cluster_batch
   become: yes
-  vars:
-    desired_state: "{{ hostvars['localhost']['desired_state'] | default([]) }}"
   roles:
     - role: stackhpc.openhpc
+      desired_state: "{{ hostvars['localhost']['desired_state'] | default([]) }}"
       openhpc_slurm_control_host: "{{ groups['cluster_control'] | first }}"
-      openhpc_cluster_name: "{{ cluster_name }}"
       openhpc_enable:
         drain: "{{ inventory_hostname not in desired_state }}"
         resume: "{{ inventory_hostname in desired_state }}"
