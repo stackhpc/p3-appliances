@@ -24,6 +24,9 @@ cluster_net:
   - { net: "p3-bdn", subnet: "p3-bdn" }
   - { net: "p3-lln", subnet: "p3-lln" }
 
+# A 3-NIC node resource in the heat templates.
+cluster_nodenet_environment: "nodenet-3.yaml"
+
 # Enable the use of config drive, for managing IP assignment on IPoIB
 cluster_config_drive: true
 
@@ -46,7 +49,6 @@ kata_master:
   image: "{{ kata_master_image}}"
   num_nodes: "{{ kata_master_num_nodes }}"
   user: "centos"
-  nodenet_resource: "Cluster::NodeNet3"
 
 # Compute node configuration.
 kata_worker_flavor: "compute-A"
@@ -59,7 +61,6 @@ kata_worker:
   image: "{{ kata_worker_image}}"
   num_nodes: "{{ kata_worker_num_nodes }}"
   user: "centos"
-  nodenet_resource: "Cluster::NodeNet3"
 
 # Compute node configuration.
 kata_worker_gpu_flavor: "compute-GPU"
@@ -72,7 +73,6 @@ kata_worker_gpu:
   image: "{{ kata_worker_gpu_image}}"
   num_nodes: "{{ kata_worker_gpu_num_nodes }}"
   user: "centos"
-  nodenet_resource: "Cluster::NodeNet3"
 
 # Node group assignments for cluster roles.
 # These group assignments are appended to the cluster inventory file.
