@@ -1,4 +1,15 @@
 ---
+# stackhpc.cluster-infra config for testing Kata containers.
+#
+# After the cluster is provisioned, run Kubespray to deploy a Kubernetes 1.14
+# cluster with CRI-O enabled using config from the following kubespray fork:
+#
+#   https://github.com/stackhpc/kubespray/tree/kata
+#
+# After the cluster is deployed, follow instructions in this blog to deploy Kata:
+#
+#   https://www.stackhpc.com/kata-io-1.html
+
 # This name is used for the Heat stack and as a prefix for the
 # cluster node hostnames.
 cluster_name: kata
@@ -54,7 +65,7 @@ kata_worker:
 # Compute node configuration.
 kata_worker_gpu_flavor: "compute-GPU"
 kata_worker_gpu_image: "CentOS7.4-CUDA"
-kata_worker_gpu_num_nodes: 2
+kata_worker_gpu_num_nodes: 1
 
 kata_worker_gpu:
   name: "gpu"
