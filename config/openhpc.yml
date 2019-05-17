@@ -13,9 +13,6 @@ cluster_net:
   - { net: "p3-bdn", subnet: "p3-bdn" }
   - { net: "p3-lln", subnet: "p3-lln" }
 
-# A 3-NIC node resource in the heat templates.
-cluster_nodenet_environment: "nodenet-3.yaml"
-
 # Enable the use of config drive, for managing IP assignment on IPoIB
 cluster_config_drive: true
 
@@ -37,6 +34,7 @@ slurm_login:
   image: "{{ slurm_login_image}}"
   num_nodes: "{{ slurm_login_num_nodes }}"
   user: "centos"
+  nodenet_resource: "Cluster::NodeNet3"
 
 # Compute node configuration.
 slurm_compute_flavor: "compute-A"
@@ -49,6 +47,7 @@ slurm_compute:
   image: "{{ slurm_compute_image}}"
   num_nodes: "{{ slurm_compute_num_nodes }}"
   user: "centos"
+  nodenet_resource: "Cluster::NodeNet3"
 
 # Node group assignments for cluster roles.
 # These group assignments are appended to the cluster inventory file.
