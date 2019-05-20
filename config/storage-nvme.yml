@@ -13,6 +13,9 @@ cluster_net:
   - { net: "p3-bdn", subnet: "p3-bdn" }
   - { net: "p3-lln", subnet: "p3-lln" }
 
+# Default nodenet to use for all instances in the cluster
+cluster_nodenet_resource: "Cluster::NodeNet3"
+
 # Enable the use of config drive, for managing IP assignment on IPoIB
 cluster_config_drive: true
 
@@ -28,7 +31,6 @@ storage:
   image: "CentOS7.5-OpenHPC"
   num_nodes: 1
   user: "centos"
-  nodenet_resource: "Cluster::NodeNet3"
 
 # Node group assignments for cluster roles.
 # These group assignments are appended to the cluster inventory file.

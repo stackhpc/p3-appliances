@@ -12,4 +12,5 @@
         cluster_groups: "{{ cluster_groups }}"
         cluster_net: "{{ cluster_net }}"
         cluster_config_drive: "{{ cluster_config_drive | default(false) }}"
+        nodenet_resource: "{{ cluster_nodenet_resource | default(omit) }}"
       cluster_roles: "{{ cluster_roles }}"
