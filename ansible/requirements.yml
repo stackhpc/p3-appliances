@@ -1,6 +1,6 @@
 ---
 - src: stackhpc.cluster-infra
-  version: v18.11.9
+  version: v19.6.1
 - src: stackhpc.os-container-infra
   version: v19.6.1
 - src: stackhpc.os-manila-mount

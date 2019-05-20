@@ -11,7 +11,7 @@ controller_vip: 10.60.253.1
 alaska_monitoring_server: 10.60.253.3
 
 # Use a different Manila share user for production.
-os_manila_mount_share_user: home
+ceph_mount_share_user: home
 
 # Name of the cloud in clouds.yaml on localhost to use in the
 # stackhpc.os-container-infra role.
