@@ -1,7 +1,7 @@
 ---
 # Sorted by maintainer name, role name
 - src: mrlesmithjr.mdadm
-- src: oasis-roles.kdump
+- src: oasis_roles.kdump
 - src: singleplatform-eng.users
 - src: stackhpc.beegfs
 - src: stackhpc.cluster-infra

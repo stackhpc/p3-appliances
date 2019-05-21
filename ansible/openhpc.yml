@@ -5,6 +5,9 @@
 # Prepare cluster
 - import_playbook: latest-packages.yml
 
+# Add openstack configuration
+- import_playbook: os-config.yml
+
 # Use mdadm to create software defined raid
 - import_playbook: mdadm.yml
 
