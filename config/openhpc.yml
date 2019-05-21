@@ -50,6 +50,13 @@ slurm_compute:
   num_nodes: "{{ slurm_compute_num_nodes }}"
   user: "centos"
 
+slurm_computex:
+  name: "computex"
+  flavor: "{{ slurm_compute_flavor }}"
+  image: "{{ slurm_compute_image}}"
+  num_nodes: "{{ slurm_compute_num_nodes }}"
+  user: "centos"
+
 # Node group assignments for cluster roles.
 # These group assignments are appended to the cluster inventory file.
 # The names of these roles are cross-referenced to groups referred to
@@ -107,7 +114,6 @@ gluster_mnt: "/mnt/{{ gluster_cluster_volume_name }}"
 
 # Config for Ceph mount
 ceph_mount_share_name: HomeDirs
-ceph_mount_path: /alaska
 ceph_mount_fuse: false
 
 # BeegFS config
@@ -120,7 +126,7 @@ beegfs_oss:
 - dev: /dev/md0
   port: 8003
 beegfs_client:
-- path: "/mnt/{{ cluster_name }}"
+- path: "/mnt/{{ cluster_name }}" # "{{ alaska_homedir }}"
   port: 8004
 - path: "/mnt/storage-ssd"
   port: 18004
