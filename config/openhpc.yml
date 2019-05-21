@@ -28,7 +28,7 @@ cluster_groups:
 
 # Login node configuration.
 slurm_login_flavor: "compute-B"
-slurm_login_image: "CentOS7.5-OpenHPC"
+slurm_login_image: "CentOS7.6-OpenHPC"
 slurm_login_num_nodes: 1
 
 slurm_login:
@@ -40,7 +40,7 @@ slurm_login:
 
 # Compute node configuration.
 slurm_compute_flavor: "compute-A"
-slurm_compute_image: "CentOS7.5-OpenHPC"
+slurm_compute_image: "CentOS7.6-OpenHPC"
 slurm_compute_num_nodes: 8
 
 slurm_compute:
@@ -126,7 +126,8 @@ beegfs_oss:
 - dev: /dev/md0
   port: 8003
 beegfs_client:
-- path: "/mnt/{{ cluster_name }}" # "{{ alaska_homedir }}"
+# - path: "{{ alaska_homedir }}"
+- path: "/mnt/{{ cluster_name }}"
   port: 8004
 - path: "/mnt/storage-ssd"
   port: 18004
