@@ -113,7 +113,7 @@ gluster_src: "localhost:/{{ gluster_cluster_volume_name }}"
 gluster_mnt: "/mnt/{{ gluster_cluster_volume_name }}"
 
 # Config for Ceph mount
-ceph_mount_share_name: HomeDirs
+ceph_mount_enabled: false
 ceph_mount_fuse: false
 
 # BeegFS config

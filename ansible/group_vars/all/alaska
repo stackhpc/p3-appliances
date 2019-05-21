@@ -5,6 +5,8 @@ alaska_cloud: alaska
 # Mount point for home directories (nb, /home will upset cloud user)
 alaska_homedir: /alaska
 alaska_softiron: 10.4.99.101
+# AlaSKA home directory name in Manila
+ceph_mount_share_name: HomeDirs
 
 # OpenStack p3 project name
 project_name: p3

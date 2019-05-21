@@ -95,8 +95,7 @@ cluster_roles:
 cluster_fs: beegfs
 
 # Config for Ceph mount
-ceph_mount_share_name: HomeDirs
-ceph_mount_path: /alaska
+ceph_mount_enabled: false
 ceph_mount_fuse: false
 
 # BeegFS config
