@@ -5,6 +5,20 @@
 # Prepare cluster
 - import_playbook: setup.yml
 
+# Use mdadm to create software defined raid
+- import_playbook: mdadm.yml
+
+# Use mdadm to create software defined raid
+- import_playbook: parted.yml
+
+# Setup hyperconverged storage. Current clusterfs options are:
+# - glusterfs
+# - beegfs
+# - <undefined>
+#
+- import_playbook: '{{ cluster_fs }}.yml'
+  when: cluster_fs is defined
+
 # Setup ceph mount
 - import_playbook: manila-client.yml
   when: ceph_mount_share_name is defined
@@ -17,19 +31,6 @@
 
 # Install monitoring services
 - import_playbook: monitoring.yml
-
-# Use mdadm to create software defined raid
-- import_playbook: mdadm.yml
-
-# Use mdadm to create software defined raid
-- import_playbook: parted.yml
-
-# Setup hyperconverged storage. Current clusterfs options are:
-# - glusterfs
-# - beegfs
-# - <undefined>
-- import_playbook: '{{ cluster_fs }}.yml'
-  when: cluster_fs is defined
 
 # Cluster login setup
 - import_playbook: slurm.yml
