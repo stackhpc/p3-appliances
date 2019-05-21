@@ -1,0 +1,28 @@
+---
+- hosts: openstack
+  gather_facts: false
+  roles:
+    - role: stackhpc.cluster-infra
+      cluster_name: "{{ cluster_name }}"
+      cluster_state: query
+      cluster_params:
+        cluster_groups: "{{ cluster_groups }}"
+  tasks:
+    - name: Count the number of compute nodes per slurm partition
+      vars:
+        partition: "{{ cluster_group.output_value | selectattr('group', 'equalto', item.name) | list }}"
+      set_fact:
+        desired_state: "{{ (( partition | first).nodes | map(attribute='name') | list )[:item.num_nodes] + desired_state | default([]) }}"
+      when: partition | length > 0
+      with_items: "{{ openhpc_slurm_partitions }}"
+    - debug: var=desired_state
+
+- hosts: cluster_batch
+  become: yes
+  roles:
+    - role: stackhpc.openhpc
+      desired_state: "{{ hostvars['localhost']['desired_state'] | default([]) }}"
+      openhpc_slurm_control_host: "{{ groups['cluster_control'] | first }}"
+      openhpc_enable:
+        drain: "{{ inventory_hostname not in desired_state }}"
+        resume: "{{ inventory_hostname in desired_state }}"

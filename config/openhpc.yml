@@ -50,6 +50,13 @@ slurm_compute:
   num_nodes: "{{ slurm_compute_num_nodes }}"
   user: "centos"
 
+slurm_computex:
+  name: "computex"
+  flavor: "{{ slurm_compute_flavor }}"
+  image: "{{ slurm_compute_image}}"
+  num_nodes: "{{ slurm_compute_num_nodes }}"
+  user: "centos"
+
 # Node group assignments for cluster roles.
 # These group assignments are appended to the cluster inventory file.
 # The names of these roles are cross-referenced to groups referred to
@@ -119,8 +126,8 @@ beegfs_oss:
 - dev: /dev/md0
   port: 8003
 beegfs_client:
-#- path: "/mnt/{{ cluster_name }}"
-- path: "{{ alaska_homedir }}"
+# - path: "{{ alaska_homedir }}"
+- path: "/mnt/{{ cluster_name }}"
   port: 8004
 - path: "/mnt/storage-ssd"
   port: 18004

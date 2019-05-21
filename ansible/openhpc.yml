@@ -11,17 +11,17 @@
 # Use mdadm to create software defined raid
 - import_playbook: parted.yml
 
+# Setup ceph mount
+- import_playbook: manila-client.yml
+  when: ceph_mount_enabled | default(false) | bool
 
 # Setup hyperconverged storage. Current clusterfs options are:
 # - glusterfs
 # - beegfs
 # - <undefined>
+#
 - import_playbook: '{{ cluster_fs }}.yml'
   when: cluster_fs is defined
-
-# Setup ceph mount
-- import_playbook: manila-client.yml
-  when: ceph_mount_enabled | default(false) | bool
 
 # Add cluster users
 - import_playbook: users.yml

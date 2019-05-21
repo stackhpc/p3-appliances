@@ -1,4 +1,9 @@
 ---
+# Sorted by maintainer name, role name
+- src: mrlesmithjr.mdadm
+- src: oasis-roles.kdump
+- src: singleplatform-eng.users
+- src: stackhpc.beegfs
 - src: stackhpc.cluster-infra
   version: v19.6.1
 - src: stackhpc.os-container-infra
@@ -11,8 +16,7 @@
 - src: stackhpc.monasca-rsyslog
 - src: stackhpc.grafana-conf
 - src: stackhpc.gluster-cluster
+- src: stackhpc.openhpc
+  version: v0.4.0
 - src: stackhpc.os-config
-- src: singleplatform-eng.users
-- src: mrlesmithjr.mdadm
-- src: oasis_roles.kdump
 ...
