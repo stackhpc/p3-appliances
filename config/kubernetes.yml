@@ -23,8 +23,8 @@ gluster_src: 10.3.0.12:/swarm_vol
 gluster_mnt: /mnt/gluster
 
 # Swarm SIP config for Ceph mount
-ceph_mount_share_name: HomeDirs
-ceph_mount_path: /mnt/ceph
+ceph_mount_enabled: false
+ceph_mount_fuse: false
 
 # Swarm SIP users 
 users:

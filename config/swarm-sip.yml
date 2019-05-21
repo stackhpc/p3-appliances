@@ -35,9 +35,8 @@ cluster_roles:
 - name: "ceph_client"
   groups: "{{ cluster_groups }}"
 
-
 # Manila mount config
-ceph_mount_share_name: "HomeDirs"
+ceph_mount_enabled: false
 ceph_mount_fuse: false
 
 # Override alaska_homedir as Fedora Atomic doesn't allow folders to be created under root scope
