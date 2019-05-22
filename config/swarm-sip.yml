@@ -17,13 +17,15 @@ cluster_interfaces:
 - "{{ lln_name }}"
 - "{{ bdn_name }}"
 
+cluster_master_count: 1
 cluster_master_group:
   name: "master"
-  count: 1
+  count: "{{ cluster_master_count }}"
 
+cluster_worker_count: 1
 cluster_worker_group:
   name: "node"
-  count: 1
+  count: "{{ cluster_worker_count }}"
 
 cluster_groups:
 - "{{ cluster_master_group }}"

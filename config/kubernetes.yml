@@ -5,18 +5,35 @@ bdn_name: p3-bdn
 lln_name: p3-lln
 
 # Kubernetes
-os_container_infra_user: fedora
-os_container_infra_state: present
-os_container_infra_cluster_name: kubernetes
-os_container_infra_cluster_template_name: k8s-fedora-atomic-27
-os_container_infra_keypair: default
-os_container_infra_master_count: 1
-os_container_infra_node_count: 6
-os_container_infra_external_interface: "{{ ext_name }}"
-os_container_infra_interfaces:
+cluster_user: "fedora"
+cluster_state: "present"
+cluster_name: "kubernetes"
+cluster_template_name: "k8s-fedora-atomic-27"
+cluster_keypair: "wendy"
+cluster_coe: "kubernetes"
+cluster_default_interface: "{{ ext_name }}"
+cluster_interfaces:
+- "{{ ext_name }}"
 - "{{ lln_name }}"
 - "{{ bdn_name }}"
-os_container_infra_environment_group: "{{ alaska_environment }}"
+
+cluster_master_count: 1
+cluster_master_group:
+  name: "master"
+  count: "{{ cluster_master_count }}"
+
+cluster_worker_count: 6
+cluster_worker_group:
+  name: "minion"
+  count: "{{ cluster_worker_count }}"
+
+cluster_groups:
+- "{{ cluster_master_group }}"
+- "{{ cluster_worker_group }}"
+
+cluster_roles:
+- name: "{{ cluster_coe }}"
+  groups: "{{ cluster_groups }}"
 
 # Kubernetes gluster source and mount path
 gluster_src: 10.3.0.12:/swarm_vol
