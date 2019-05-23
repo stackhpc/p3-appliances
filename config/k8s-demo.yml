@@ -7,7 +7,7 @@ lln_name: p3-lln
 # SIP configuration
 cluster_user: "fedora"
 cluster_name: "k8s-demo"
-cluster_template_name: "k8s-fedora-atomic-27"
+cluster_template_name: "k8s-fedora-atomic-29"
 cluster_keypair: "wendy"
 cluster_coe: "kubernetes"
 cluster_default_interface: "{{ ext_name }}"

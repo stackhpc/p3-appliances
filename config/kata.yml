@@ -40,7 +40,7 @@ cluster_groups:
 
 # Login node configuration.
 kata_master_flavor: "compute-A"
-kata_master_image: "CentOS7.5-OpenHPC"
+kata_master_image: "CentOS7.6-OpenHPC"
 kata_master_num_nodes: 1
 
 kata_master:
@@ -52,7 +52,7 @@ kata_master:
 
 # Compute node configuration.
 kata_worker_flavor: "compute-A"
-kata_worker_image: "CentOS7.5-OpenHPC"
+kata_worker_image: "CentOS7.6-OpenHPC"
 kata_worker_num_nodes: 2
 
 kata_worker:
@@ -64,7 +64,7 @@ kata_worker:
 
 # Compute node configuration.
 kata_worker_gpu_flavor: "compute-GPU"
-kata_worker_gpu_image: "CentOS7.4-CUDA"
+kata_worker_gpu_image: "CentOS7.6-CUDA"
 kata_worker_gpu_num_nodes: 1
 
 kata_worker_gpu:
@@ -86,8 +86,9 @@ cluster_roles:
   - name: "master"
     groups: [ "{{ kata_master }}" ]
   - name: "minion"
-    groups: [ "{{ kata_worker }}" ]
-    groups: [ "{{ kata_worker_gpu }}" ]
+    groups:
+      - "{{ kata_worker }}"
+      - "{{ kata_worker_gpu }}"
   - name: "beegfs_client"
     groups: "{{ cluster_groups }}"
 
