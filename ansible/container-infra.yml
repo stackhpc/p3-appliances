@@ -10,7 +10,7 @@
     os_container_infra_auth: "{{ openstack_auth }}"
     os_container_infra_auth_type: "{{ openstack_auth_type }}"
     os_container_infra_cluster_name: "{{ cluster_name }}"
-    os_container_infra_state: "{{ cluster_state | default('query') }}"
+    os_container_infra_state: "{{ cluster_state | default('present') }}"
     os_container_infra_user: "{{ cluster_user }}"
     os_container_infra_cluster_template_name: "{{ cluster_template_name }}"
     os_container_infra_roles: "{{ cluster_roles }}"
