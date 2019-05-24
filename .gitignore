@@ -13,3 +13,6 @@ ansible/roles/*\.*/
 # IntelliJ files
 .idea
 *.iml
+
+# Ignore vault password
+vault-password
