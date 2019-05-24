@@ -22,7 +22,6 @@
 # - glusterfs
 # - beegfs
 # - <undefined>
-#
 - import_playbook: '{{ cluster_fs }}.yml'
   when: cluster_fs is defined
 

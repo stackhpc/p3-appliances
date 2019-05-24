@@ -48,5 +48,5 @@ if [[ $STATE != absent ]]; then
     -e @config/openhpc.yml \
     -e @config/test-openhpc.yml \
     -i ansible/inventory-test-openhpc \
-    ansible/openhpc.yml
+    ansible/cluster-infra-configure.yml
 fi
