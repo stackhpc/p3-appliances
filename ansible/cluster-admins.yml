@@ -4,4 +4,4 @@
   become: yes
   roles:
   - role: singleplatform-eng.users
-    users: "{{ cluster_admins }}"
+    users: "{{ alaska_admins + extra_admins | default([]) }}"

@@ -3,7 +3,8 @@
 #
 ---
 - name: Deploy Monasca Swarm monitoring service
-  hosts: master
+  hosts: cluster_monasca_swarm[0]
+  gather_facts: no
   become: yes
   roles:
   - role: monasca_swarm_service
