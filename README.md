@@ -78,7 +78,7 @@ subdirectory.  This inventory is suffixed with the value set in
 `cluster_name`.  The cluster software can be deployed and configured
 using another playbook (for example):
 
-    ansible-playbook --vault-password-file vault-password -e @config/openhpc.yml -i ansible/inventory-openhpc ansible/openhpc.yml
+    ansible-playbook --vault-password-file vault-password -e @config/openhpc.yml -i ansible/inventory-openhpc ansible/cluster-infra-configure.yml
 
 ### Deploying and configuring Swarm SIP
 
@@ -155,5 +155,5 @@ To setup GlusterFS server:
 
 To setup hyperconverged storage and mount storage on OpenHPC node:
 
-    ansible-playbook --vault-password-file vault-password -e @config/openhpc.yml -i ansible/inventory-openhpc ansible/openhpc.yml
+    ansible-playbook --vault-password-file vault-password -e @config/openhpc.yml -i ansible/inventory-openhpc ansible/cluster-infra-configure.yml
 
