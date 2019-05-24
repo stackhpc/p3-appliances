@@ -8,7 +8,7 @@ lln_name: p3-lln
 cluster_user: "fedora"
 cluster_state: "present"
 cluster_name: "kubernetes"
-cluster_template_name: "k8s-fedora-atomic-27"
+cluster_template_name: "k8s-fedora-atomic-29"
 cluster_keypair: "wendy"
 cluster_coe: "kubernetes"
 cluster_default_interface: "{{ ext_name }}"

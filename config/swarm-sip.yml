@@ -8,7 +8,7 @@ lln_name: p3-lln
 cluster_user: "fedora"
 cluster_state: "present"
 cluster_name: "swarm-sip"
-cluster_template_name: "swarm-fedora-atomic-27"
+cluster_template_name: "swarm-fedora-atomic-29"
 cluster_keypair: "wendy"
 cluster_coe: "swarm-mode"
 cluster_default_interface: "{{ ext_name }}"
