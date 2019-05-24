@@ -4,6 +4,9 @@
 
 # Query OpenStack Manila for details aob
 - hosts: openstack
+  pre_tasks:
+    - debug: var=ceph_mount_share_name
+    - debug: var=ceph_mount_share_user
   roles:
     - role: stackhpc.os-manila-mount
       os_manila_mount_action: "lookup"
@@ -21,6 +24,7 @@
       os_manila_mount_host: "{{ hostvars['localhost']['os_manila_mount_host'] }}"
       os_manila_mount_access_key: "{{ hostvars['localhost']['os_manila_mount_access_key'] }}"
       os_manila_mount_export: "{{ hostvars['localhost']['os_manila_mount_export'] }}"
+      os_manila_mount_share_user: "{{ ceph_mount_share_user }}"
       os_manila_mount_pkgs_install: True
       os_manila_mount_path: "{{ alaska_homedir }}"
       os_manila_mount_user: "root"
