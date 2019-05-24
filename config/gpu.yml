@@ -35,11 +35,7 @@ compute:
 # The names of these roles are cross-referenced to groups referred to
 # in playbooks in the ansible/ directory.
 cluster_roles:
-  - name: "glusterfs_server"
-    groups: [ "{{ compute }}" ]
   - name: "glusterfs_client"
-    groups: [ "{{ compute }}" ]
-  - name: "beegfs_oss"
     groups: [ "{{ compute }}" ]
   - name: "beegfs_client"
     groups: ["{{ compute }}" ]
@@ -48,7 +44,7 @@ cluster_roles:
 cluster_fs: beegfs
 
 # Config for Ceph mount
-ceph_mount_enabled: false
+ceph_mount_enabled: true
 ceph_mount_fuse: false
 
 # BeegFS config
