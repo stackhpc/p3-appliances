@@ -2,6 +2,9 @@
 # Prepare cluster
 - import_playbook: setup.yml
 
+- import_playbook: configure-ib.yml
+  when: configure_ib_enabled | default(false) | bool
+
 # Prepare cluster
 - import_playbook: latest-packages.yml
 
@@ -25,10 +28,10 @@
 - import_playbook: '{{ cluster_fs }}.yml'
   when: cluster_fs is defined
 
-# Add cluster users
+# Add cluster users with shared home directory
 - import_playbook: users.yml
 
-# Add admin users
+# Add cluster admin users
 - import_playbook: cluster-admins.yml
 
 # Install monitoring services
