@@ -19,6 +19,10 @@ cluster_nodenet_resource: "Cluster::NodeNet3"
 # Enable the use of config drive, for managing IP assignment on IPoIB
 cluster_config_drive: true
 
+# GPU images do not have infiniband packages built in so run this
+# playbook to ensure it is enabled.
+configure_ib_enabled: true
+
 # The cluster consists of a single compute group.
 cluster_groups:
   - "{{ compute }}"
