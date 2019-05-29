@@ -3,7 +3,7 @@
 #
 ---
 - name: Deploy Prometheus Swarm monitoring service
-  hosts: cluster_prometheus_swarm
+  hosts: cluster_prometheus_swarm[0]
   gather_facts: no
   become: yes
   roles:

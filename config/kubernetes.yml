@@ -1,9 +1,4 @@
 ---
-# Kubernetes network interface names
-ext_name: ilab
-bdn_name: p3-bdn
-lln_name: p3-lln
-
 # Kubernetes
 cluster_user: "fedora"
 cluster_state: "present"

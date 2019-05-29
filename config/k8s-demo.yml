@@ -1,9 +1,4 @@
 ---
-# SIP network interface names
-ext_name: ilab
-bdn_name: p3-bdn
-lln_name: p3-lln
-
 # SIP configuration
 cluster_user: "fedora"
 cluster_name: "k8s-demo"
