@@ -166,4 +166,5 @@ openhpc_packages:
   - python-devel
   - git-lfs
   - perf
+  - perl-devel
 ...
