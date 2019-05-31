@@ -167,4 +167,5 @@ openhpc_packages:
   - git-lfs
   - perf
   - perl-devel
+  - gdb
 ...
