@@ -165,4 +165,7 @@ openhpc_packages:
   - readline-devel
   - python-devel
   - git-lfs
+  - perf
+  - perl-devel
+  - gdb
 ...
