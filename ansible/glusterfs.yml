@@ -7,5 +7,8 @@
 - name: Deploy glusterfs client
   hosts: cluster_glusterfs_client
   roles:
-  - mount_glusterfs
+  - role: mount_glusterfs
+    when:
+    - gluster_src is defined
+    - gluster_src is not none
 ...

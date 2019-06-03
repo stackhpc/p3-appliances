@@ -3,8 +3,8 @@
 #
 ---
 - name: Deploy Prometheus Swarm monitoring service
-  hosts: localhost
-  connection: local
+  hosts: cluster_prometheus_swarm[0]
   gather_facts: no
+  become: yes
   roles:
   - role: prometheus_swarm_service
