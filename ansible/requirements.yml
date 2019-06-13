@@ -9,7 +9,7 @@
 - src: stackhpc.os-container-infra
   version: v19.6.1
 - src: stackhpc.os-manila-mount
-  version: v19.1.1
+  version: v19.6.1
 - src: stackhpc.beegfs
   version: v19.4.1
 - src: stackhpc.monasca-agent
