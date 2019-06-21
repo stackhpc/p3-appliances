@@ -2,6 +2,11 @@
 # Apply generic setup configuration that is universally useful
 - hosts: cluster
   become: yes
+  pre_tasks:
+    - name: extra packages to install
+      yum:
+        name: "{{ extra_packages | default([]) }}"
+        state: latest
   roles:
     - role: oasis_roles.kdump
       kdump_package: kexec-tools
