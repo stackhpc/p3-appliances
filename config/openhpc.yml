@@ -65,6 +65,8 @@ cluster_roles:
     groups: [ "{{ slurm_login }}" ]
   - name: "batch"
     groups: [ "{{ slurm_compute }}" ]
+  - name: "runtime"
+    groups: "{{ cluster_groups }}"
   - name: "mdadm"
     groups: [ "{{ slurm_compute }}" ]
   - name: "glusterfs_server"
