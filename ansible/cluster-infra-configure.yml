@@ -37,6 +37,9 @@
 # Install monitoring services
 - import_playbook: monitoring.yml
 
+# Enable virtiofs for kata containers
+- import_playbook: kata-nemu.yml
+
 # Cluster login setup
 - import_playbook: slurm.yml
 ...

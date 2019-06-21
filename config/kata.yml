@@ -72,6 +72,8 @@ cluster_roles:
     groups: "{{ cluster_groups }}"
   - name: "glusterfs_client"
     groups: "{{ cluster_groups }}"
+  - name: "kata_nemu"
+    groups: "{{ cluster_groups }}"
 
 # Choose between glusterfs, beegfs and none.
 cluster_fs: beegfs

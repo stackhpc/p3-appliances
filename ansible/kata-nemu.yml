@@ -1,0 +1,13 @@
+- hosts: cluster_kata_nemu
+  gather_facts: no
+  become: yes
+  tasks:
+  - name: Set sysctl settings for virtiofs
+    sysctl:
+      name: "{{ item.name }}"
+      value: "{{ item.value }}"
+      state: present
+      reload: yes
+      sysctl_set: yes
+    with_items:
+      - { name: vm.nr_hugepages, value: 2048 } # https://github.com/kata-containers/documentation/blob/master/how-to/how-to-use-virtio-fs-with-kata.md
