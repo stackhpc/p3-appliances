@@ -15,5 +15,8 @@
         service_type: logging
         endpoint_type: public
         region_name: RegionOne
-    monasca_rsyslog_branch: url
+    monasca_rsyslog_api_verbosity: 1
+    monasca_rsyslog_api_max_batch_size: 100
+    monasca_rsyslog_api_min_poll_delay: 10
+    monasca_rsyslog_branch: '0.2.1'
     monasca_rsyslog_venv: "/opt/monasca-rsyslog"

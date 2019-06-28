@@ -14,6 +14,7 @@
   version: v19.4.1
 - src: stackhpc.monasca-agent
 - src: stackhpc.monasca-rsyslog
+  version: 1.1.0
 - src: stackhpc.grafana-conf
 - src: stackhpc.gluster-cluster
 - src: stackhpc.openhpc
