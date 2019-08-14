@@ -6,24 +6,7 @@
     state: restarted
   become: true
 
-- name: Unload kernel modules
-  modprobe:
-    name: "{{ item }}"
-    state: absent
-  with_items: "{{ ib_modules }}"
-  become: true 
-  notify: Reset interface
-  ignore_errors: true
-
-- name: Load kernel modules
-  modprobe:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ ib_modules }}"
-  become: true
-  notify: Reset interface
-
 - name: Reset interface
-  shell: ifdown ib0; ifup ib0
+  include: reset_interface.yml
   become: true
 ...

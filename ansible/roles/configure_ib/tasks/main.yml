@@ -33,18 +33,14 @@
     create: yes
   with_items: "{{ ib_modules }}"
   become: yes
-  notify:
-    - Unload kernel modules
-    - Load kernel modules
+  notify: Reset interface
 
 - name: Set selinux to permissive
   selinux:
     state: permissive
     policy: targeted
   become: yes
-  notify:
-    - Unload kernel modules
-    - Load kernel modules
+  notify: Reset interface
 
 - name: Load kernel modules
   modprobe:
