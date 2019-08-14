@@ -154,6 +154,7 @@ mdadm_arrays:
 
 # A list of OpenHPC runtime libraries to install on compute and control nodes
 openhpc_packages:
+  - openmpi-gnu-ohpc
   - cfitsio
   - cfitsio-devel
   - wcslib
