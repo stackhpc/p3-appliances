@@ -18,5 +18,5 @@
     monasca_rsyslog_api_verbosity: 1
     monasca_rsyslog_api_max_batch_size: 100
     monasca_rsyslog_api_min_poll_delay: 10
-    monasca_rsyslog_branch: '0.2.1'
+    monasca_rsyslog_branch: '0.3.0'
     monasca_rsyslog_venv: "/opt/monasca-rsyslog"
