@@ -11,7 +11,7 @@
 - src: stackhpc.os-manila-mount
   version: v19.6.1
 - src: stackhpc.beegfs
-  version: v19.4.1
+  version: v19.8.1
 - src: stackhpc.monasca-agent
 - src: stackhpc.monasca-rsyslog
 - src: stackhpc.grafana-conf
