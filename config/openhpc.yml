@@ -117,8 +117,9 @@ beegfs_force_format: no
 beegfs_interfaces:
 - ib0
 beegfs_mgmt_host: "{{ groups['cluster_beegfs_mgmt'] | first }}"
+#- dev: /dev/md0
 beegfs_oss:
-- dev: /dev/md0
+- path: /data/beegfs_path
   port: 8003
 beegfs_client:
 # - path: "{{ alaska_homedir }}"
@@ -171,4 +172,5 @@ openhpc_packages:
   - perf
   - perl-devel
   - gdb
+  - htop
 ...
