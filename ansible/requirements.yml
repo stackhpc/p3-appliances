@@ -3,7 +3,6 @@
 - src: mrlesmithjr.mdadm
 - src: oasis_roles.kdump
 - src: singleplatform-eng.users
-- src: stackhpc.beegfs
 - src: stackhpc.cluster-infra
   version: v19.6.1
 - src: stackhpc.os-container-infra
@@ -11,7 +10,7 @@
 - src: stackhpc.os-manila-mount
   version: v19.6.1
 - src: stackhpc.beegfs
-  version: v19.8.1
+  version: v19.8.2
 - src: stackhpc.monasca-agent
 - src: stackhpc.monasca-rsyslog
 - src: stackhpc.grafana-conf
