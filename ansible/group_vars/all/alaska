@@ -114,6 +114,18 @@ alaska_users:
   - name: "Kitrick Sheets"
     user: kitrick
     uid: 2026
+  - name: "Jeffrey Salmond"
+    user: jeffrey
+    uid: 2029
+  - name: "Mark Ashdown"
+    user: marka
+    uid: 2030
+  - name: "Feng Wang"
+    user: feng
+    uid: 2031
+  - name: "Steve Brasier"
+    user: steveb
+    uid: 2032
 
 alaska_admin_user: centos
 
