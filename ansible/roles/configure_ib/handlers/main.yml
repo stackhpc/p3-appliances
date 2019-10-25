@@ -7,6 +7,20 @@
   become: true
 
 - name: Reset interface
-  include: reset_interface.yml
-  become: true
+  block:
+  - name: Bring interface down
+    shell: ifdown ib0
+  - name: Unload kernel modules
+    modprobe:
+      name: "{{ item }}"
+      state: absent
+    with_items: "{{ ib_modules }}"
+    ignore_errors: true
+  - name: Load kernel modules
+    modprobe:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ ib_modules }}"
+  - name: Bring interface up
+    shell: ifup ib0
 ...
