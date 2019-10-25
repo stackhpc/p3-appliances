@@ -10,6 +10,7 @@
     port: 22
     state: stopped
     timeout: "{{ reboot_down_timeout }}"
+  become: False
 
 - name: Wait for SSH access to return
   local_action:
@@ -18,3 +19,4 @@
     port: 22
     state: started
     timeout: "{{ reboot_up_timeout }}"
+  become: False
