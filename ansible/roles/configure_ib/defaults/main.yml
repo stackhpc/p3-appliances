@@ -5,12 +5,16 @@ ib_mtu:
 ib_netmask: 255.255.255.0
 ib_connected_mode: no
 ib_use_config_drive: no
+# NOTE(wszusmki): These are ordered so that dependent modules
+# are unloaded after the dependencies.
 ib_modules:
 - rdma_ucm
 - rdma_cm
-- mlx5_core
 - mlx5_ib
-- ib_core
+- mlx5_core
+- ib_ipoib
+- iw_cm
 - ib_uverbs
 - ib_ipoib
+- ib_core
 ...
