@@ -17,3 +17,6 @@ ansible/roles/*\.*
 
 # Ignore vault password
 vault-password
+
+# If you follow the README, you will create the venv here:
+venv
