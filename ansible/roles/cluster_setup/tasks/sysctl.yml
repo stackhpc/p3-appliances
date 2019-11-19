@@ -9,5 +9,12 @@
     reload: yes
     sysctl_set: yes
   with_items:
-    - { name: kernel.panic, value: 5 }
+    - name: kernel.hung_task_timeout_secs
+      value: 0
+    - name: kernel.panic
+      value: 5
+    - name: vm.dirty_background_ratio
+      value: 5
+    - name: vm.dirty_ratio
+      value: 10
 ...
