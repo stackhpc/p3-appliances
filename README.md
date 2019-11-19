@@ -157,3 +157,8 @@ To setup hyperconverged storage and mount storage on OpenHPC node:
 
     ansible-playbook --vault-password-file vault-password -e @config/openhpc.yml -i ansible/inventory-openhpc ansible/cluster-infra-configure.yml
 
+# Monitoring Ceph
+
+To configure monitoring of the Ceph cluster
+
+ansible-playbook --vault-password-file vault.pass -i ansible/inventory-ceph ansible/monitoring-ceph.yml
