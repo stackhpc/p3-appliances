@@ -172,6 +172,9 @@ openhpc_packages:
   - perf
   - perl-devel
   - gdb
+
+extra_packages:
+  - singularity
   - htop
   - screen
   - tmux
