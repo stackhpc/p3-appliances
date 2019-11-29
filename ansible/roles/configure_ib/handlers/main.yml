@@ -7,6 +7,5 @@
   become: true
 
 - name: Reset interface
-  import_tasks: reset_interface.yml
-  become: true
+  include_tasks: reset_interface.yml
 ...

@@ -3,17 +3,21 @@
   shell: ifdown ib0
   register: result
   failed_when: "result.rc != 0 and 'is not an active connection' not in result.stderr"
+  become: true
 - name: Unload kernel modules
   modprobe:
     name: "{{ item }}"
     state: absent
   with_items: "{{ ib_modules }}"
   ignore_errors: true
+  become: true
 - name: Load kernel modules
   modprobe:
     name: "{{ item }}"
     state: present
   with_items: "{{ ib_modules }}"
+  become: true
 - name: Bring interface up
   shell: ifup ib0
+  become: true
 ...
