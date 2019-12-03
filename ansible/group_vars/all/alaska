@@ -21,7 +21,7 @@ monasca_agent_p3_username: p3-monasca-agent
 monasca_agent_p3_password: "{{ vault_p3_monasca_agent_password }}"
 
 # OpenStack credentials for posting logs and metrics to the central monitoring project
-monasca_project_name: monasca
+monasca_project_name: p3
 monasca_agent_username: monasca-agent
 monasca_agent_password: "{{ vault_monasca_agent_password }}"
 

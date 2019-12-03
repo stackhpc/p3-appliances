@@ -9,7 +9,6 @@
       project: "{{ monasca_project_name }}"
       username: "{{ monasca_agent_username }}"
       password: "{{ monasca_agent_password }}"
-    monasca_rsyslog_venv: "/usr/libexec/monasca-rsyslog"
 
 - name: Deploy Monasca Agent
   hosts: ceph
@@ -29,5 +28,6 @@
     monasca_region_name: RegionOne
     monasca_service_type: monitoring
     monasca_log_level: INFO
+    monasca_agent_system_only: true
     monasca_agent_custom_plugin_repos:
     - "https://github.com/stackhpc/stackhpc-monasca-agent-plugins.git"
