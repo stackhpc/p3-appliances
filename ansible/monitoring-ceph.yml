@@ -19,7 +19,7 @@
     monasca_user: root
     monasca_agent_user: "{{ monasca_agent_p3_username }}"
     monasca_agent_password: "{{ monasca_agent_p3_password }}"
-    monasca_agent_project: "{{ monasca_project_name }}"
+    monasca_agent_project: "{{ project_name }}"
     monasca_agent_branch: stable/rocky  # Note: We use Rocky because monasca-common pulls in confluent-kafka on stein which doesn't build on arm cluster
     monasca_pip_extra_args: "-c https://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt?h=stable/rocky"
     monasca_endpoint_type: null
