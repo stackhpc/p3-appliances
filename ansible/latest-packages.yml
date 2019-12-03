@@ -2,11 +2,21 @@
 - hosts: cluster_latest_packages
   become: yes
   pre_tasks:
-
-    - name: install latest packages
+    - name: install base OS-provided OHPC dependencies
       yum:
-        name: "*"
+        name: "ohpc-base-compute"
         state: latest
+
+   # See Apx B of OHPC install manuals
+    - name: install latest OHPC packages
+      yum:
+        name: "*-ohpc"
+        state: latest
+
+#    - name: install latest packages
+#      yum:
+#        name: "*"
+#        state: latest
 
     - name: check if reboot is required
       command: needs-restarting -r
