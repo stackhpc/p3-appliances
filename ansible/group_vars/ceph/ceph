@@ -1,0 +1,4 @@
+---
+# Group vars file for Ceph nodes
+ansible_connection: ssh
+ansible_ssh_user: root
