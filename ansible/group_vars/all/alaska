@@ -126,6 +126,12 @@ alaska_users:
   - name: "Steve Brasier"
     user: steveb
     uid: 2032
+  - name: "Rohini Joshi"
+    user: rohini
+    uid: 2035
+  - name: "James Collinson"
+    user: jamesc
+    uid: 2036
 
 alaska_admin_user: centos
 
