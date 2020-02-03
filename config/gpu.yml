@@ -30,7 +30,7 @@ cluster_groups:
 compute:
   name: "compute"
   flavor: "compute-GPU"
-  image: "CentOS7.6-CUDA"
+  image: "CentOS7.7-OpenHPC"
   num_nodes: 2
   user: "centos"
 
