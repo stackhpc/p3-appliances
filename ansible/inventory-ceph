@@ -1,0 +1,15 @@
+# Ansible inventory for using p3-appliances with the ALaSKA
+# SoftIron Ceph cluster
+
+# Ansible Shade uses OpenStack clients running locally
+[openstack]
+localhost ansible_connection=local ansible_python_interpreter=python
+
+[ceph]
+admin ansible_host=10.4.99.100
+mon1 ansible_host=10.4.99.101
+osd1 ansible_host=10.4.99.102
+osd2 ansible_host=10.4.99.103
+
+[alaska:children]
+ceph
