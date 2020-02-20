@@ -8,9 +8,9 @@ ib_use_config_drive: no
 ib_modules:
 - rdma_ucm
 - rdma_cm
-- mlx5_core
 - mlx5_ib
-- ib_core
 - ib_uverbs
 - ib_ipoib
+- mlx5_core
+- ib_core
 ...
