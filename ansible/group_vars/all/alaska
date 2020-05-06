@@ -1,6 +1,7 @@
 ---
 # Network interface names
 ext_name: ilab
+int_name: p3-internal
 bdn_name: p3-bdn
 lln_name: p3-lln
 
