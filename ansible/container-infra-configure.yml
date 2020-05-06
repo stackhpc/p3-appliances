@@ -24,15 +24,9 @@
 - import_playbook: manila-client.yml
   when: ceph_mount_enabled | default(false) | bool
 
-# Mount glusterfs
-- import_playbook: glusterfs.yml
-
 # For coe clusters, we always need to configure infiniband, for now.
 - import_playbook: configure-ib.yml
   when: configure_ib_enabled | default(true) | bool
-
-# Setup cluster admins
-- import_playbook: cluster-admins.yml
 
 # Setup monasca monitoring
 - import_playbook: monitoring-monasca-swarm.yml

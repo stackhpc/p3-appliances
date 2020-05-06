@@ -6,7 +6,7 @@
 - src: stackhpc.cluster-infra
   version: v20.2.0
 - src: stackhpc.os-container-infra
-  version: v19.6.1
+  version: v20.0.0
 - src: stackhpc.os-manila-mount
   version: v19.6.1
 - src: stackhpc.beegfs
