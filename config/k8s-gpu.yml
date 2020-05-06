@@ -1,0 +1,57 @@
+---
+# SIP configuration
+cluster_user: "fedora"
+cluster_name: "k8s-gpu"
+cluster_template_name: "k8s-gpu"
+cluster_keypair: "wendy"
+cluster_coe: "kubernetes"
+cluster_image: "Fedora-AtomicHost-29-20181126.0"
+cluster_default_interface: "{{ int_name }}"
+cluster_interfaces:
+- "{{ int_name }}"
+- "{{ lln_name }}"
+- "{{ bdn_name }}"
+cluster_labels:
+  heat_container_agent_tag: ussuri-dev
+  ingress_controller: nginx
+  kube_tag: v1.14.1
+  monitoring_enabled: 'true'
+  tiller_enabled: 'true'
+
+cluster_master_group:
+  name: "master"
+  count: 1
+
+cluster_worker_group:
+  name: "minion"
+  count: 1
+
+cluster_groups:
+- "{{ cluster_master_group }}"
+- "{{ cluster_worker_group }}"
+
+cluster_roles:
+- name: "kubernetes"
+  groups: "{{ cluster_groups }}"
+- name: "ceph_client"
+  groups: "{{ cluster_groups }}"
+
+# Kubernetes version
+cluster_k8s_version: "v1.14.1"
+cluster_k8s_master_kubelet: true
+
+# Manila mount config
+ceph_mount_enabled: true
+ceph_mount_fuse: false
+
+# Override alaska_homedir as Fedora Atomic doesn't allow folders to be created under root scope
+alaska_homedir: "/mnt/alaska"
+
+# Disable these before running setup.yml
+kdump_enable: false
+# This is enabled by default on Atomic Host
+setup_time_enable: false
+
+# The user is fedora for Kubernetes and Docker Swarm container clusters.
+alaska_admin_user: fedora
+...
