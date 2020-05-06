@@ -39,7 +39,7 @@ cluster_groups:
 
 # Login node configuration.
 kata_master_flavor: "compute-A"
-kata_master_image: "CentOS7.6-OpenHPC"
+kata_master_image: "CentOS7.7-OpenHPC"
 kata_master_num_nodes: 1
 
 kata_master:
@@ -51,8 +51,8 @@ kata_master:
 
 # Compute node configuration.
 kata_worker_flavor: "compute-A"
-kata_worker_image: "CentOS7.6-OpenHPC"
-kata_worker_num_nodes: 2
+kata_worker_image: "CentOS7.7-OpenHPC"
+kata_worker_num_nodes: 1
 
 kata_worker:
   name: "worker"
