@@ -12,6 +12,7 @@
 - src: stackhpc.beegfs
   version: v19.8.2
 - src: stackhpc.monasca-agent
+  version: 1.0.4
 - src: stackhpc.monasca-rsyslog
 - src: stackhpc.grafana-conf
 - src: stackhpc.gluster-cluster
