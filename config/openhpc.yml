@@ -179,4 +179,6 @@ extra_packages:
   - htop
   - screen
   - tmux
+  - cmake
+  - jq
 ...
