@@ -28,7 +28,7 @@ cluster_groups:
 
 # Login node configuration.
 slurm_login_flavor: "compute-B"
-slurm_login_image: "CentOS7.7-OpenHPC"
+slurm_login_image: "CentOS7.8-OpenHPC"
 slurm_login_num_nodes: 1
 
 slurm_login:
@@ -40,7 +40,7 @@ slurm_login:
 
 # Compute node configuration.
 slurm_compute_flavor: "compute-A"
-slurm_compute_image: "CentOS7.7-OpenHPC"
+slurm_compute_image: "CentOS7.8-OpenHPC"
 slurm_compute_num_nodes: 16
 
 slurm_compute:
@@ -108,7 +108,7 @@ gluster_src: "localhost:/{{ gluster_cluster_volume_name }}"
 gluster_mnt: "/mnt/{{ gluster_cluster_volume_name }}"
 
 # Config for Ceph mount
-ceph_mount_enabled: true
+ceph_mount_enabled: false
 ceph_mount_fuse: false
 
 # BeegFS config
@@ -122,10 +122,10 @@ beegfs_oss:
 - path: /data/beegfs/beegfs_oss/path
   port: 8003
 beegfs_client:
-# - path: "{{ alaska_homedir }}"
 - path: "/mnt/{{ cluster_name }}"
   port: 8004
-- path: "/mnt/storage-ssd"
+# - path: "/mnt/storage-ssd"
+- path: "{{ alaska_homedir }}"
   port: 18004
   mgmt_host: "storage-ssd-node-0"
 - path: "/mnt/storage-nvme"

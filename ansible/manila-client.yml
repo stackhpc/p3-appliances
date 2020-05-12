@@ -4,9 +4,6 @@
 
 # Query OpenStack Manila for details aob
 - hosts: openstack
-  pre_tasks:
-    - debug: var=ceph_mount_share_name
-    - debug: var=ceph_mount_share_user
   roles:
     - role: stackhpc.os-manila-mount
       os_manila_mount_action: "lookup"
