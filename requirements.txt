@@ -1,11 +1,11 @@
 ansible>=2.9.0
 os-client-config
 shade
-openstacksdk==0.45.0; python_version<='2.7'
+openstacksdk==0.40.0; python_version<='2.7'
 python-barbicanclient
 python-keystoneclient
 python-magnumclient>=2.12.0
 python-novaclient
 python-openstackclient
-python-ironicclient
+python-ironicclient==3.1.2; python_version<='2.7'
 python-heatclient
