@@ -10,4 +10,5 @@
     sysctl_set: yes
   with_items:
     - { name: kernel.panic, value: 5 }
+    - { name: user.max_user_namespaces, value: 100000 }
 ...

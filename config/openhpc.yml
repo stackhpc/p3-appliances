@@ -175,6 +175,7 @@ openhpc_packages:
 
 extra_packages:
   - singularity
+  - podman
   - htop
   - screen
   - tmux
