@@ -1,5 +1,6 @@
 ---
 # SIP configuration
+cluster_service: container-infra
 cluster_user: "fedora"
 cluster_state: "present"
 cluster_name: "swarm-sip"

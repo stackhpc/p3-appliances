@@ -1,5 +1,6 @@
 ---
 # SIP configuration
+cluster_service: container-infra
 cluster_user: "fedora"
 cluster_name: "k8s-gpu"
 cluster_template_name: "k8s-gpu"
@@ -32,8 +33,6 @@ cluster_groups:
 
 cluster_roles:
 - name: "kubernetes"
-  groups: "{{ cluster_groups }}"
-- name: "ceph_client"
   groups: "{{ cluster_groups }}"
 
 # Kubernetes version
