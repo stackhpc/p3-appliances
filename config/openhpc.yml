@@ -179,4 +179,7 @@ extra_packages:
   - htop
   - screen
   - tmux
+  # NOTE(wszumski): SKA folks are running casaviewer on the login node using X11
+  # forwarding.
+  - xorg-x11-xauth
 ...
