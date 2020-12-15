@@ -143,6 +143,15 @@ alaska_users:
   - name: "James Collinson"
     user: jamesc
     uid: 2036
+  - name: "Cees Carels"
+    user: cees
+    uid: 2041
+  - name: "Celeste Lu"
+    user: celeste
+    uid: 2042
+  - name: "Maciej Serylak"
+    user: maciej
+    uid: 2043
 
 alaska_admin_user: centos
 
