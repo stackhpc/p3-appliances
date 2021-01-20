@@ -152,6 +152,9 @@ alaska_users:
   - name: "Maciej Serylak"
     user: maciej
     uid: 2043
+  - name: "Simon Daley-Yates"
+    user: simon
+    uid: 2044
 
 alaska_admin_user: centos
 
