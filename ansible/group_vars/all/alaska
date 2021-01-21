@@ -155,6 +155,9 @@ alaska_users:
   - name: "Simon Daley-Yates"
     user: simon
     uid: 2044
+  - name: "Mahendra Paipuri"
+    user: mahendra
+    uid: 2045
 
 alaska_admin_user: centos
 
