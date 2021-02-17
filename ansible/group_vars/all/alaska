@@ -158,6 +158,9 @@ alaska_users:
   - name: "Mahendra Paipuri"
     user: mahendra
     uid: 2045
+  - name: "Gabriella Hodosan"
+    user: gabriella
+    uid: 2046
 
 alaska_admin_user: centos
 
