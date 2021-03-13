@@ -10,11 +10,10 @@ cluster_keypair: wendy
 # Site-specific network configuration.
 cluster_net:
   - { net: "ilab", subnet: "ilab" }
-  - { net: "p3-bdn", subnet: "p3-bdn" }
   - { net: "p3-lln", subnet: "p3-lln" }
 
 # Default nodenet to use for all instances in the cluster
-cluster_nodenet_resource: "Cluster::NodeNet3"
+cluster_nodenet_resource: "Cluster::NodeNet2"
 
 # Enable the use of config drive, for managing IP assignment on IPoIB
 cluster_config_drive: true
@@ -182,4 +181,5 @@ extra_packages:
   # NOTE(wszumski): SKA folks are running casaviewer on the login node using X11
   # forwarding.
   - xorg-x11-xauth
+  - sudo
 ...
