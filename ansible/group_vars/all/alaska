@@ -69,37 +69,36 @@ alaska_users:
   - name: "Fred Dulwich"
     user: fred
     uid: 2009
-# Removed 2020-12-15
-# - name: "Alasdair King"
-#   user: alasdair
-#   uid: 2010
+  - name: "Alasdair King"
+    user: alasdair
+    uid: 2010
+    active: false # Removed 2020-12-15
   - name: "Verity Allan"
     user: verity
     uid: 2011
   - name: "Nijin Thykkathu"
     user: nijin
     uid: 2012
-# Removed 2020-12-15
-# - name: "James Kent"
-#   user: james
-#   uid: 2013
+  - name: "James Kent"
+    user: james
+    uid: 2013
+    active: false # Removed 2020-12-15
   - name: "Tim Cornwell"
     user: tim
     uid: 2014
   - name: "Piers Harding"
     user: piers
     uid: 2015
-# Removed 2020-12-15
-# - name: "Arjen Tamerus"
-#   user: arjen
-#   uid: 2016
+  - name: "Arjen Tamerus"
+    user: arjen
+    uid: 2016
+    active: false # Removed 2020-12-15
   - name: "Bojan Nikolic"
     user: bojan
     uid: 2017
-# Removed 2020-12-15
-#  - name: "Brian"
-#    user: brian
-#    uid: 2018
+  - name: "Brian McIlwrath"
+    user: brian
+    uid: 2018
   - name: "Doug Szumski"
     user: doug
     uid: 2019
@@ -124,10 +123,10 @@ alaska_users:
   - name: "Kitrick Sheets"
     user: kitrick
     uid: 2026
-# Removed 2020-12-15
-# - name: "Jeffrey Salmond"
-#   user: jeffrey
-#   uid: 2029
+  - name: "Jeffrey Salmond"
+    user: jeffrey
+    uid: 2029
+    active: false # Removed 2020-12-15
   - name: "Mark Ashdown"
     user: marka
     uid: 2030

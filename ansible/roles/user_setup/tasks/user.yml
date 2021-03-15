@@ -1,11 +1,7 @@
 ---
-- name: Empty RSA key fact
-  set_fact:
-    rsa_pubkeys: {}
-
 - name: Create user and RSA key
   user:
-    state: present
+    state: "{{ item.active | default(true) | bool | ternary('present', 'absent') }}"
     system: no
     name: "{{ item.user }}"
     uid: "{{ item.uid }}"
@@ -15,21 +11,20 @@
     generate_ssh_key: yes
     ssh_key_comment: "{{ item.name }}"
   with_items: "{{ users }}"
+  register: users
 
 - name: Read user RSA public key
   slurp:
     src: "{{ homedir }}/{{ item.user }}/.ssh/id_rsa.pub"
   with_items: "{{ users }}"
+  when: item.active | default(true) | bool
   register: user_pubkeys
 
-- name: Set user public keys as facts
-  set_fact:
-    rsa_pubkeys: "{{ rsa_pubkeys | combine({ item.item.user: item.content|b64decode }) }}"
+- name: Write user's own public key as authorized for SSH access
+  authorized_key:
+    user: "{{ item.item.user }}"
+    state: present
+    manage_dir: no
+    key: "{{ item.content | b64decode }}"
   with_items: "{{ user_pubkeys.results }}"
-
-#- name: Write user's own public key as authorized for SSH access
-#  authorized_key:
-#    user: "{{ item.user }}"
-#    state: present
-#    key: "{{ rsa_pubkeys[item.user] }}"
-#  with_items: "{{ users }}"
+  when: item.item.active | default(true) | bool
