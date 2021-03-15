@@ -39,4 +39,7 @@
 
 # Cluster login setup
 - import_playbook: slurm.yml
+
+# Cluster add kubectl
+- import_playbook: kubectl.yml
 ...

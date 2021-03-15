@@ -1,0 +1,18 @@
+- hosts: cluster_login
+  become: yes
+  tasks:
+    - name: Install latest kubectl
+      shell: >
+        curl -LO https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_version }}/bin/linux/amd64/kubectl && \
+          chmod +x kubectl && \
+          sudo mv kubectl /usr/local/bin/kubectl-{{ kubectl_version }} && \
+          sudo ln -sf /usr/local/bin/kubectl-{{ kubectl_version }} /usr/local/bin/kubectl
+      args:
+        warn: false
+        creates: "/usr/local/bin/kubectl-{{ kubectl_version }}"
+    - name: Set global KUBECONFIG variable
+      lineinfile:
+        line: "KUBECONFIG={{ kubeconfig_path }}"
+        state: present
+        path: /etc/environment
+      when: kubeconfig_path is defined
