@@ -1,7 +1,7 @@
 ---
 - name: Create local user record
   user:
-    state: present
+    state: "{{ item.active | default(true) | bool | ternary('present', 'absent') }}"
     system: no
     name: "{{ item.user }}"
     uid: "{{ item.uid }}"
