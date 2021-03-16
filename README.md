@@ -13,17 +13,16 @@ This repo is split into two parts:
 
 ## Installation
 
+Ensure that `libselinux-python3` is installed:
+
+    sudo yum install -y libselinux-python3
+
 It is recommended to install python dependencies in a virtual environment:
 
-    virtualenv venv
+    virtualenv-3 venv
     source venv/bin/activate
     pip install -U pip
     pip install -r requirements.txt
-
-If SELinux is in use on the ansible control host, enable access to the
-`selinux` python module from the virtualenv:
-
-    ln -s /usr/lib64/python2.7/site-packages/selinux venv/lib/python2.7/site-packages/selinux
 
 Download and deploy the role from Ansible Galaxy:
 
