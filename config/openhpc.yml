@@ -182,4 +182,7 @@ extra_packages:
   # forwarding.
   - xorg-x11-xauth
   - sudo
+  - mc
+  - pgplot5 # NOTE (mserylak): this should be original pgplot and not the giza-dev and libgiza0
+  - xjobs
 ...
