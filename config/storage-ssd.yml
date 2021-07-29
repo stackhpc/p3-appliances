@@ -70,8 +70,7 @@ gluster_mnt: "/mnt/{{ gluster_cluster_volume_name }}"
 # BeeGFS config
 beegfs_state: present
 beegfs_force_format: false
-beegfs_interfaces:
-- ib0
+beegfs_interfaces: []
 beegfs_mgmt_host: "{{ groups['cluster_beegfs_mgmt'] | first }}"
 beegfs_oss:
 - dev: /dev/sdb
