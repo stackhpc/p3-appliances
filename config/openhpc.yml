@@ -113,8 +113,7 @@ ceph_mount_fuse: false
 # BeegFS config
 beegfs_state: present
 beegfs_force_format: no
-beegfs_interfaces:
-- ib0
+beegfs_interfaces: []
 beegfs_mgmt_host: "{{ groups['cluster_beegfs_mgmt'] | first }}"
 #- dev: /dev/md0
 beegfs_oss:
@@ -127,9 +126,6 @@ beegfs_client:
 - path: "{{ alaska_homedir }}"
   port: 18004
   mgmt_host: "storage-ssd-node-0"
-- path: "/mnt/storage-nvme"
-  port: 28004
-  mgmt_host: "storage-nvme-node-0"
 
 # Software defined raid config
 md0:
@@ -183,6 +179,4 @@ extra_packages:
   - xorg-x11-xauth
   - sudo
   - mc
-  - pgplot5 # NOTE (mserylak): this should be original pgplot and not the giza-dev and libgiza0
-  - xjobs
 ...
