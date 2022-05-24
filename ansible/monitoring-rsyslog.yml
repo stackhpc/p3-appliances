@@ -1,0 +1,22 @@
+#
+# Copyright StackHPC, 2017
+#
+---
+- name: Configure instance monitoring
+  hosts: cluster
+  become: yes
+  roles:
+  - role: stackhpc.monasca-rsyslog
+    monasca_rsyslog_api_auth:
+        auth_url: "http://{{ controller_vip }}:5000/v3"
+        project: "{{ project_name }}"
+        username: "{{ monasca_agent_p3_username }}"
+        password: "{{ monasca_agent_p3_password }}"
+        service_type: logging
+        endpoint_type: public
+        region_name: RegionOne
+    monasca_rsyslog_api_verbosity: 1
+    monasca_rsyslog_api_max_batch_size: 100
+    monasca_rsyslog_api_min_poll_delay: 10
+    monasca_rsyslog_branch: '0.3.0'
+    monasca_rsyslog_venv: "/opt/monasca-rsyslog"

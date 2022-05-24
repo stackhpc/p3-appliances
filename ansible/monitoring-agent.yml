@@ -1,0 +1,23 @@
+#
+# Copyright StackHPC, 2017
+#
+---
+- name: Configure instance monitoring
+  hosts: cluster
+  become: yes
+  roles:
+  - role: stackhpc.monasca-agent
+    keystone_url: "http://{{ controller_vip }}:5000/v3"
+    monasca_user: root
+    monasca_agent_user: "{{ monasca_agent_p3_username }}"
+    monasca_agent_password: "{{ monasca_agent_p3_password }}"
+    monasca_agent_project: "{{ project_name }}"
+    monasca_agent_branch: stable/pike
+    monasca_pip_extra_args: "-c https://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt?h=stable/pike"
+    monasca_endpoint_type: public
+    monasca_project_domain_name: Default
+    monasca_user_domain_name: Default
+    monasca_region_name: RegionOne
+    monasca_service_type: monitoring
+    monasca_agent_custom_plugin_repos:
+    - "https://github.com/stackhpc/stackhpc-monasca-agent-plugins.git@master"
